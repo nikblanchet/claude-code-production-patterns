@@ -8,7 +8,7 @@
 
 **New to DocImp infrastructure?** Start here:
 
-1. **Read**: `INFRASTRUCTURE_BEST_EXAMPLES.md` - The 3 most impressive components with detailed explanations
+1. **Read**: `../INFRASTRUCTURE_BEST_EXAMPLES.md` - The 3 most impressive components with detailed explanations
 2. **Scan**: `INFRASTRUCTURE-DOCS_1-Overview.md` - High-level architecture and philosophy
 3. **Deep dive**: Topic-specific docs below based on your needs
 
@@ -18,7 +18,7 @@
 
 ### Best Examples (Start Here!)
 
-**File**: `INFRASTRUCTURE_BEST_EXAMPLES.md` (24,000 words)
+**File**: `../INFRASTRUCTURE_BEST_EXAMPLES.md` (24,000 words)
 
 **Purpose**: Showcase the 3 most impressive and sophisticated infrastructure components
 
@@ -424,7 +424,7 @@
 
 | File | Words | Purpose |
 |------|-------|---------|
-| `INFRASTRUCTURE_BEST_EXAMPLES.md` | 24,000 | Top 3 most impressive components |
+| `../INFRASTRUCTURE_BEST_EXAMPLES.md` | 24,000 | Top 3 most impressive components |
 | `INFRASTRUCTURE-DOCS_1-Overview.md` | 5,500 | Architecture and philosophy |
 | `INFRASTRUCTURE-DOCS_2-Git-Hooks.md` | 7,800 | Git hooks and worktree workflow |
 | `INFRASTRUCTURE-DOCS_3-Claude-Code-Config.md` | 9,200 | Permissions and documentation |
@@ -545,17 +545,17 @@ python3 .claude/skills/git-workflow/scripts/create_worktree.py issue-300 feature
 
 **Path 1: Quick Start (30 minutes)**
 1. Read: `INFRASTRUCTURE-DOCS_1-Overview.md`
-2. Scan: `INFRASTRUCTURE_BEST_EXAMPLES.md` (introduction of each section)
+2. Scan: `../INFRASTRUCTURE_BEST_EXAMPLES.md` (introduction of each section)
 3. Try: Create a worktree, run quality checks, observe direnv interception
 
 **Path 2: Deep Dive (2-3 hours)**
-1. Read: `INFRASTRUCTURE_BEST_EXAMPLES.md` (all 3 sections)
+1. Read: `../INFRASTRUCTURE_BEST_EXAMPLES.md` (all 3 sections)
 2. Read: Topic-specific docs based on role (e.g., Git Hooks for workflow, Quality Checks for testing)
 
 ### For Job Interviewers / Reviewers
 
 **Path: Showcase (1 hour)**
-1. **Start**: `INFRASTRUCTURE_BEST_EXAMPLES.md`
+1. **Start**: `../INFRASTRUCTURE_BEST_EXAMPLES.md`
    - Read section 1 (Git Hooks + Worktree Workflow) - 20 minutes
    - Read section 2 (Claude Code Configuration) - 20 minutes
    - Read section 3 (Direnv Integration) - 20 minutes

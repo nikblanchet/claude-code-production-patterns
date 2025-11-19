@@ -704,4 +704,4 @@ source ~/.bashrc
 - ✅ Automatic environment management
 - ✅ Educational error messages
 
-**Next Steps**: See `INFRASTRUCTURE_BEST_EXAMPLES.md` for in-depth exploration of the 3 most impressive infrastructure components (Git Hooks, Claude Code Config, direnv).
+**Next Steps**: See `../INFRASTRUCTURE_BEST_EXAMPLES.md` for in-depth exploration of the 3 most impressive infrastructure components (Git Hooks, Claude Code Config, direnv).
