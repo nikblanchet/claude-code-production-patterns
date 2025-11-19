@@ -1,0 +1,45 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(test:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run test:*)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run ruff:*)",
+      "Bash(uv run mypy:*)",
+      "Bash(gh --version:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh pr view:*)",
+      "Bash(git log:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "mcp__ide__getDiagnostics",
+      "Glob(./**)",
+      "Grep(./**)",
+      "Read(./**)",
+      "Skill(development-standards)",
+      "Skill(exhaustive-testing)",
+      "Skill(handle-deprecation-warnings)",
+      "WebFetch(domain:github.com)",
+      "WebSearch"
+    ],
+    "deny": [
+      "Bash(python:*::*)",
+      "Bash(python3:*::*)",
+      "Bash(pytest:*::*)",
+      "Bash(pip:*::*)"
+    ],
+    "ask": [
+      "Bash(uv run python:*)",
+      "Bash(uv pip:*)",
+      "Bash(uv add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)"
+    ],
+    "additionalDirectories": [
+      "/path/to/shared/directory"
+    ]
+  }
+}
