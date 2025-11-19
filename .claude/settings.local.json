@@ -1,0 +1,55 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(test:*)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run ruff:*)",
+      "Bash(uv run mypy:*)",
+      "Bash(gh --version:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh pr view:*)",
+      "Bash(git log:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "mcp__ide__getDiagnostics",
+      "Glob(./**)",
+      "Grep(./**)",
+      "Read(./**)",
+      "Skill(development-standards)",
+      "Skill(exhaustive-testing)",
+      "Skill(handle-deprecation-warnings)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "Bash(cat:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git mv:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pytest:*)",
+      "Bash(pip:*)",
+      "Bash(pip3:*)",
+      "Bash(ruff:*)",
+      "Bash(mypy:*)",
+      "Bash(/Library/Frameworks/Python.framework/Versions/3.14/bin/python3:*)",
+      "Bash(/Users/nik/Documents/Code/claude-code-production-patterns/main/.venv/bin/python:*)",
+      "Bash(/Users/nik/Documents/Code/claude-code-production-patterns/main/.venv/bin/python3:*)",
+      "Bash(/Users/nik/Documents/Code/claude-code-production-patterns/main/.venv/bin/pytest:*)",
+      "Bash(/Users/nik/Documents/Code/claude-code-production-patterns/main/.venv/bin/pip:*)",
+      "Bash(/Users/nik/Documents/Code/claude-code-production-patterns/main/.venv/bin/pip3:*)",
+      "Bash(/Users/nik/Documents/Code/claude-code-production-patterns/main/.venv/bin/ruff:*)",
+      "Bash(/Users/nik/Documents/Code/claude-code-production-patterns/main/.venv/bin/mypy:*)"
+    ],
+    "ask": [
+      "Bash(uv run python:*)",
+      "Bash(uv pip:*)",
+      "Bash(uv add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)"
+    ]
+  }
+}
