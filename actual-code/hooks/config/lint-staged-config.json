@@ -1,0 +1,12 @@
+{
+  "lint-staged": {
+    "*.{ts,js,mjs,cjs}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.py": [
+      "ruff format",
+      "ruff check --fix"
+    ]
+  }
+}
