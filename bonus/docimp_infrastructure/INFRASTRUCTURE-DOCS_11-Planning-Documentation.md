@@ -410,9 +410,10 @@ incremental analysis features.
 ├── development-workflow.md          # Methodology documentation
 ├── workflow-state-master-plan.md    # Feature-specific plan
 ├── ARCHITECTURE_DIAGRAMS.md         # Visual architecture
-├── INFRASTRUCTURE_BEST_EXAMPLES.md  # Showcase documentation
 ├── INFRASTRUCTURE-DOCS_*.md         # Detailed infrastructure docs
 └── INFRASTRUCTURE-README.md         # Index/navigation
+
+(Note: INFRASTRUCTURE_BEST_EXAMPLES.md relocated to bonus/ directory for visibility)
 ```
 
 **Why Gitignored?**

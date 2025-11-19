@@ -369,4 +369,4 @@ For detailed documentation on specific components:
 - **Quality Checks**: See `INFRASTRUCTURE-DOCS_4-Quality-Checks.md`
 - **CI/CD**: See `INFRASTRUCTURE-DOCS_5-CI-CD.md`
 - **Workflow Automation**: See `INFRASTRUCTURE-DOCS_6-Workflow-Automation.md`
-- **Best Examples**: See `INFRASTRUCTURE_BEST_EXAMPLES.md` for the 3 most impressive components
+- **Best Examples**: See `../INFRASTRUCTURE_BEST_EXAMPLES.md` for the 3 most impressive components
