@@ -1,0 +1,3 @@
+# Scenario C: Agents and Hooks - Why I Chose This
+
+I chose Scenario C because building DocImp (17K+ lines, Python/TypeScript/JavaScript) required orchestrating 4 parallel Claude Code instances using custom git hooks and worktree infrastructure. I built a `create_worktree.py` script that automates worktree creation with shared Claude Code configuration via symlinks, enabling isolated development with consistent agent behavior. While I documented additional patterns (direnv tool interception, CLAUDE.md context management), the worktree orchestration pattern represents my deepest hands-on experience with advanced Claude Code workflows and directly addresses the multi-instance coordination challenges in Scenario C.
