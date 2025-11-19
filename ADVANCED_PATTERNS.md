@@ -4,12 +4,147 @@
 
 DocImp (17,000+ lines across Python, TypeScript, and JavaScript) required sophisticated infrastructure to coordinate 4 parallel Claude Code instances working simultaneously on different features. Managing multiple worktrees, keeping context synchronized, and ensuring workflow consistency posed unique challenges at scale.
 
-This document presents three battle-tested patterns that emerged from real production use:
-1. **Git Worktree Orchestration** - Path-based detection and automated hooks for branch protection
-2. **CLAUDE.md Context Management** - External imports to overcome the 40KB character limit
-3. **Direnv Tool Interception** - PATH manipulation for workflow enforcement with helpful errors
+This document presents battle-tested patterns that emerged from real production use, organized into two categories:
+
+**Core Claude Code Features** (Scenario C Focus):
+1. **Claude Code Hooks** - Event-driven workflow automation and permissions (`actual-code/hooks-config/`)
+2. **Custom Agents** - Autonomous multi-step task execution (`actual-code/agents/`)
+3. **Custom Skills** - Specialized knowledge and workflows (`actual-code/skills/`)
+
+**Supporting Git Patterns**:
+4. **Git Worktree Orchestration** - Path-based detection and automated hooks for branch protection
+5. **CLAUDE.md Context Management** - External imports to overcome the 40KB character limit
+6. **Direnv Tool Interception** - PATH manipulation for workflow enforcement with helpful errors
 
 These patterns are designed for senior developers managing large codebases (100K+ lines) who need to coordinate multiple concurrent development workflows while maintaining strict quality gates. Each pattern includes working code, implementation guidance, and honest assessment of when to use (or avoid) the approach.
+
+---
+
+## Pattern 0: Claude Code Hooks, Agents, and Skills
+
+Before diving into Git integration patterns, it's critical to understand Claude Code's native features for workflow automation. These are the foundation of Scenario C.
+
+### Claude Code Hooks
+
+**Location**: `actual-code/hooks-config/`
+
+Event-driven shell commands that execute during Claude Code sessions. Unlike Git hooks (which respond to Git operations), Claude Code hooks respond to AI assistance events.
+
+**Key hook types**:
+- `user-prompt-submit`: Runs when user submits a prompt
+- `tool-call`: Intercepts tool execution
+- `session-start` / `session-end`: Lifecycle management
+
+**Example use cases**:
+```json
+{
+  "hooks": {
+    "user-prompt-submit": {
+      "command": "git status --short",
+      "_comment": "Inject git status so Claude knows about uncommitted changes"
+    }
+  }
+}
+```
+
+**Permissions system**:
+- `allow`: Tools Claude can use freely
+- `deny`: Tools blocked completely
+- `ask`: Tools requiring user approval
+
+**Critical distinction**: Claude Code hooks ≠ Git hooks
+- Claude Code hooks: During AI sessions (prompt submit, tool calls)
+- Git hooks: During Git operations (commit, push, checkout)
+
+See [`actual-code/hooks-config/README.md`](actual-code/hooks-config/README.md) for comprehensive documentation.
+
+---
+
+### Custom Agents
+
+**Location**: `actual-code/agents/`
+
+Autonomous subprocesses that execute complex multi-step tasks with fresh eyes (no inherited conversation context).
+
+**User Agents** (`actual-code/agents/user/`):
+- **python-313-conventions**: Python 3.13+ modernization reviewer
+  - 10 review dimensions: typing design, API contracts, async patterns, etc.
+  - Complements automation (Ruff/mypy) with semantic review
+  - Catches design patterns automation cannot check
+
+**Project Agents** (`actual-code/agents/project/`):
+- **code-reviewer**: Autonomous 11-dimension code review
+  - Gathers requirements from PR, .planning/PLAN.md, linked issues
+  - Checks previous review blockers (now acceptance criteria)
+  - Classifies: Blocker, Important, Minor, Enhancement
+  - Saves detailed review, posts summary to PR
+
+**Agent vs Skill vs Hook**:
+| Feature | Agents | Skills | Hooks |
+|---------|--------|--------|-------|
+| **What** | Autonomous subprocess | Knowledge in context | Event-driven command |
+| **When** | Complex multi-step tasks | Provide expertise | Respond to events |
+| **Context** | Isolated (fresh eyes) | Shared | Runs in shell |
+| **Example** | Code reviewer | Git workflow standards | Inject git status |
+
+See agent READMEs for invocation patterns and examples.
+
+---
+
+### Custom Skills
+
+**Location**: `actual-code/skills/`
+
+Specialized knowledge and workflows loaded into context when relevant.
+
+**User Skills** (`actual-code/skills/user/` - 6 skills):
+- **development-standards**: No emoji, modern features, thorough docs (CRITICAL)
+- **exhaustive-testing**: Comprehensive test coverage
+- **handle-deprecation-warnings**: Proactive API migration
+- **dependency-management**: Library usage philosophy
+- **cli-ux-colorful**: Terminal formatting
+- **access-skill-resources**: Navigate skill bundles
+
+**Official Skills** (`actual-code/skills/official/`):
+- **skill-creator**: Guide for creating effective skills
+
+**Project Skills** (`actual-code/skills/project/`):
+- **git-workflow**: Git worktree-based workflow, commit standards, branch management
+
+**When to use**:
+- **Skill**: Provide domain knowledge (brand guidelines, API docs, workflows)
+- **Agent**: Execute complex tasks (code review, test generation)
+- **Hook**: Automate on events (inject context, enforce standards)
+
+See skill READMEs for detailed instructions.
+
+---
+
+## Integration Pattern: Hooks + Skills + Agents
+
+These features work together powerfully:
+
+```
+1. Hook triggers on event
+   ↓
+2. Skill provides domain knowledge
+   ↓
+3. Agent executes complex task
+   ↓
+4. Git hooks enforce quality gates
+```
+
+**Example workflow**:
+1. User submits prompt → `user-prompt-submit` hook injects git status
+2. `git-workflow` skill provides commit standards and worktree guidance
+3. `code-reviewer` agent autonomously reviews changes across 11 dimensions
+4. Git `pre-commit` hook blocks commit if tests fail or on wrong branch
+
+This creates a robust quality framework where:
+- Hooks ensure Claude has necessary context
+- Skills provide consistent guidance
+- Agents handle complex multi-step tasks
+- Git hooks provide final safety net
 
 ---
 
