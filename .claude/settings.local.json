@@ -29,8 +29,7 @@
       "Bash(./actual-code/create_worktree.py:*)",
       "Bash(git worktree:*)",
       "Bash(git branch:*)",
-      "Bash(/Users/nik/Documents/Code/claude-code-production-patterns/test-worktree/.venv/bin/python:*)",
-      "Bash(/Users/nik/Documents/Code/claude-code-production-patterns/test-worktree/.venv/bin/ruff:*)"
+      "Bash(git restore:*)"
     ],
     "deny": [
       "Bash(python:*)",
