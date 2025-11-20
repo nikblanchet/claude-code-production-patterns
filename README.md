@@ -11,7 +11,7 @@ This repository demonstrates **Scenario C: Claude Code Agents and Hooks - Advanc
 - **Skills** - Specialized knowledge and workflows for specific domains
 - **Git Integration** - Worktree orchestration and branch protection
 
-All patterns extracted from production use in a 17,000+ line polyglot codebase.
+All patterns extracted from production use in a large-scale polyglot codebase.
 
 **Background:** This repository was created in response to a technical documentation assignment. See [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md) for the original prompt and requirements that shaped this work.
 

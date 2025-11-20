@@ -2,7 +2,7 @@
 
 ## Overview
 
-DocImp (17,000+ lines across Python, TypeScript, and JavaScript) required sophisticated infrastructure to coordinate 4 parallel Claude Code instances working simultaneously on different features. Managing multiple worktrees, keeping context synchronized, and ensuring workflow consistency posed unique challenges at scale.
+DocImp, a large-scale production system across Python, TypeScript, and JavaScript, required sophisticated infrastructure to coordinate 4 parallel Claude Code instances working simultaneously on different features. Managing multiple worktrees, keeping context synchronized, and ensuring workflow consistency posed unique challenges at scale.
 
 This document presents battle-tested patterns that emerged from real production use, organized into two categories:
 
@@ -236,7 +236,7 @@ If you need to bypass this check (for maintenance only):
 
 ### Implementation
 
-See `actual-code/create_worktree.py` (1066 lines) for complete automation.
+See `actual-code/create_worktree.py` for complete automation.
 See `actual-code/hooks/` for hook implementations.
 
 ---
@@ -630,4 +630,4 @@ This take-home was completed in 3.5 hours, focusing on one working pattern (work
 - **Source Code**: DocImp at [github.com/nikblanchet/docimp](https://www.github.com/nikblanchet/docimp)
 - **Working Implementation**: See `actual-code/` directory in this repository
 - **Planning Strategy**: See `PLANNING.md` for development approach
-- **Worktree Creation Script**: `actual-code/create_worktree.py` (1066 lines, production-ready)
+- **Worktree Creation Script**: `actual-code/create_worktree.py` (production-ready)
