@@ -123,10 +123,10 @@ Large refactoring review (15 files, 2500 lines):
 
 | PR Size | Files Changed | Input Tokens | Output Tokens | Total | Cost | Time |
 |---------|---------------|--------------|---------------|-------|------|------|
-| Small PR | 1-3 files, < 200 LOC | 15K-25K | 5K-10K | 20K-35K | $0.08-$0.15 | 30-60s |
-| Medium PR | 5-10 files, 200-800 LOC | 40K-80K | 15K-25K | 55K-105K | $0.22-$0.42 | 2-4min |
-| Large PR | 15-30 files, 1000-2500 LOC | 100K-150K | 30K-50K | 130K-200K | $0.52-$1.05 | 5-8min |
-| Huge PR | 50+ files, 3000+ LOC | 180K+ | 50K+ | 230K+ | $1.20+ | 10-15min |
+| Small PR | 1-3 files, minor changes | 15K-25K | 5K-10K | 20K-35K | $0.08-$0.15 | 30-60s |
+| Medium PR | 5-10 files, moderate changes | 40K-80K | 15K-25K | 55K-105K | $0.22-$0.42 | 2-4min |
+| Large PR | 15-30 files, substantial changes | 100K-150K | 30K-50K | 130K-200K | $0.52-$1.05 | 5-8min |
+| Huge PR | 50+ files, extensive changes | 180K+ | 50K+ | 230K+ | $1.20+ | 10-15min |
 
 **11 Review Dimensions** (overhead per dimension):
 1. Functional Completeness: +5K-10K tokens (gathers requirements from PR/.planning/issues)
@@ -195,7 +195,7 @@ Typical PR Review Flow:
    - Post PR comment: 3-8s
    - Return report: 2s
 
-Total: 2-5 minutes for medium PR (8 files, 500 LOC)
+Total: 2-5 minutes for medium PR (8 files, moderate changes)
 ```
 
 ---
@@ -648,7 +648,7 @@ git commit --no-verify
 
 ### 3.1 Codebase Size Impact
 
-#### Small Projects (< 10K LOC)
+#### Small Projects
 
 **Performance characteristics**:
 - Agent reviews: 20K-50K tokens per invocation
@@ -661,7 +661,7 @@ git commit --no-verify
 - Single worktree often sufficient
 - All skills can be active if needed
 
-#### Medium Projects (10K-100K LOC)
+#### Medium Projects
 
 **Performance characteristics**:
 - Agent reviews: 50K-150K tokens (selective file review)
@@ -680,7 +680,7 @@ git commit --no-verify
 3. Selective skill loading (3-4 most relevant)
 4. Hook caching (git status every 5s not every prompt)
 
-#### Large Projects (100K+ LOC)
+#### Large Projects
 
 **Performance characteristics**:
 - Agent reviews: 100K-200K tokens (must be scoped)
@@ -692,10 +692,10 @@ git commit --no-verify
 
 1. **Agent scope discipline**:
    ```
-   Bad:  Review entire module (50 files, 10K LOC)
+   Bad:  Review entire module (50 files, extensive changes)
          → 200K+ tokens, may hit context limit
 
-   Good: Review PR files only (5-10 files, 500 LOC)
+   Good: Review PR files only (5-10 files, focused changes)
          → 50K-100K tokens, fits comfortably
    ```
 
@@ -1386,7 +1386,7 @@ else:
 
 #### 2. Agent Context Window Pressure (Large PRs)
 
-**Issue**: Reviewing 30+ files or 3000+ LOC approaches 200K context limit
+**Issue**: Reviewing 30+ files with extensive changes approaches 200K context limit
 
 **Impact**:
 - Agent may fail with "context limit exceeded"
@@ -1553,7 +1553,7 @@ awk -F',' '{sum+=$5; count++} END {
 **Triggers for re-evaluation**:
 
 1. **Codebase growth** (10x size increase):
-   - What worked at 10K LOC may not work at 100K LOC
+   - What worked for small codebases may not work for large ones
    - Re-benchmark hooks, agents, worktree creation
    - Revisit optimization decisions
 

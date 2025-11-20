@@ -39,9 +39,9 @@ This repository demonstrates advanced Claude Code integration patterns:
   - Caching strategies for repeated operations
 
 **Provide specific estimates:**
-- Small file review (< 200 lines): X tokens, Y seconds
-- Medium review (200-1000 lines): X tokens, Y seconds
-- Large review (1000+ lines): X tokens, Y seconds
+- Small file review: X tokens, Y seconds
+- Medium review: X tokens, Y seconds
+- Large review: X tokens, Y seconds
 - Full PR review (10-50 files): X tokens, Y minutes
 
 #### 2.2 Custom Skills
@@ -103,9 +103,9 @@ This repository demonstrates advanced Claude Code integration patterns:
 
 #### 3.1 Codebase Size Impact
 **Document performance across scales:**
-- Small projects (< 10K LOC): Performance characteristics
-- Medium projects (10K-100K LOC): What changes, what to watch
-- Large projects (100K+ LOC): Critical optimizations needed
+- Small projects: Performance characteristics
+- Medium projects: What changes, what to watch
+- Large projects: Critical optimizations needed
 
 #### 3.2 Team Size Impact
 - Single developer: Baseline performance
@@ -248,7 +248,7 @@ A developer reading this should be able to:
 ## Additional Context
 
 Review these files for implementation details:
-- `actual-code/create_worktree.py` (1,067 lines) - main performance-sensitive code
+- `actual-code/create_worktree.py` - main performance-sensitive code
 - `actual-code/agents/*/README.md` - agent architecture
 - `actual-code/hooks-config/README.md` - hook patterns
 - `actual-code/skills/*/README.md` - skill structure

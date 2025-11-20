@@ -42,7 +42,7 @@ Claude Code's permissions system controls which tools Claude can use without ask
 
 ### Example Configuration
 
-See `settings.local.json` for a production example from a 17K+ line codebase.
+See `settings.local.json` for a production example from a large-scale codebase.
 
 ## Common Hook Use Cases
 
@@ -331,7 +331,7 @@ Hooks work best when combined with:
 
 ## Example Production Configuration
 
-The included `settings.local.json` shows a real configuration from a 17,000+ line polyglot codebase (Python + TypeScript + JavaScript) with:
+The included `settings.local.json` shows a real configuration from a large-scale polyglot codebase (Python + TypeScript + JavaScript) with:
 
 - Test command permissions (pytest, npm test, ruff, mypy)
 - Git operation permissions (read-only allowed, write requires approval)
