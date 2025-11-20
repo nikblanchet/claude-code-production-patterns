@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Production patterns and best practices for Claude Code"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "git-filter-repo>=2.47.0",
+]
 
 [dependency-groups]
 dev = [
