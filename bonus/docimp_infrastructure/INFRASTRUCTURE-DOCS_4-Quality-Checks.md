@@ -77,45 +77,45 @@ ignore = []  # Strict enforcement - no ignored rules
 
 **DTZ (Timezone-aware datetime)**:
 ```python
-# ❌ Violation (DTZ005: datetime.now() with no tz argument)
+# ✗ Violation (DTZ005: datetime.now() with no tz argument)
 from datetime import datetime
 now = datetime.now()
 
-# ✅ Fixed
+# ✓ Fixed
 from datetime import datetime, timezone
 now = datetime.now(timezone.utc)
 ```
 
 **UP (Modern Python 3.13 syntax)**:
 ```python
-# ❌ Violation (UP006: Use dict instead of Dict)
+# ✗ Violation (UP006: Use dict instead of Dict)
 from typing import Dict
 data: Dict[str, int] = {}
 
-# ✅ Fixed
+# ✓ Fixed
 data: dict[str, int] = {}  # PEP 585 built-in generics
 ```
 
 **PTH (Use pathlib)**:
 ```python
-# ❌ Violation (PTH118: os.path.join should be replaced with Path)
+# ✗ Violation (PTH118: os.path.join should be replaced with Path)
 import os
 path = os.path.join('/tmp', 'file.txt')
 
-# ✅ Fixed
+# ✓ Fixed
 from pathlib import Path
 path = Path('/tmp') / 'file.txt'
 ```
 
 **SIM (Simplify code)**:
 ```python
-# ❌ Violation (SIM108: Use ternary operator instead of if/else)
+# ✗ Violation (SIM108: Use ternary operator instead of if/else)
 if condition:
     value = 'yes'
 else:
     value = 'no'
 
-# ✅ Fixed
+# ✓ Fixed
 value = 'yes' if condition else 'no'
 ```
 
@@ -436,12 +436,12 @@ for (const n of numbers) sum += n;
 
 **Import ordering**:
 ```javascript
-// ❌ Violation (import/order)
+// ✗ Violation (import/order)
 import { foo } from './utils';
 import * as fs from 'node:fs';
 import chalk from 'chalk';
 
-// ✅ Fixed (builtin → external → internal)
+// ✓ Fixed (builtin → external → internal)
 import * as fs from 'node:fs';
 import chalk from 'chalk';
 import { foo } from './utils';
@@ -449,12 +449,12 @@ import { foo } from './utils';
 
 **TypeScript unused vars**:
 ```javascript
-// ❌ Violation (@typescript-eslint/no-unused-vars)
+// ✗ Violation (@typescript-eslint/no-unused-vars)
 function processData(input: string, _format: string): void {
   return input.trim();  // _format unused but not ignored
 }
 
-// ✅ Fixed
+// ✓ Fixed
 function processData(input: string, _format: string): void {
   return input.trim();  // Leading _ = intentionally unused
 }
@@ -892,9 +892,9 @@ $ git commit -m "Add new command"
 - Jest: 27+ test files, ESM preset, sequential execution
 
 **Auto-Enforcement**:
-- ✅ Pre-commit hooks auto-fix violations before commit
-- ✅ CI/CD blocks PRs with quality issues
-- ✅ direnv forces `uv run` prefix (no bare python/pip/pytest)
-- ✅ Claude Code permissions block dangerous operations
+- ✓ Pre-commit hooks auto-fix violations before commit
+- ✓ CI/CD blocks PRs with quality issues
+- ✓ direnv forces `uv run` prefix (no bare python/pip/pytest)
+- ✓ Claude Code permissions block dangerous operations
 
 **Next Steps**: See `INFRASTRUCTURE-DOCS_5-CI-CD.md` for GitHub Actions CI/CD configuration.
