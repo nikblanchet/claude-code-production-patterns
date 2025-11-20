@@ -111,9 +111,9 @@ docimp/.claude/settings.local.json               → .docimp-shared/.claude/sett
 - Coordinated with direnv interception (double enforcement)
 
 **Example Blocked Commands**:
-- ❌ `python script.py` → Blocked, suggests `uv run python script.py`
-- ❌ `pip install requests` → Blocked, suggests `uv add requests`
-- ❌ `pytest -v` → Blocked, suggests `uv run pytest -v`
+- ✗ `python script.py` → Blocked, suggests `uv run python script.py`
+- ✗ `pip install requests` → Blocked, suggests `uv add requests`
+- ✗ `pytest -v` → Blocked, suggests `uv run pytest -v`
 
 #### Bash Commands (Ask)
 
@@ -779,9 +779,9 @@ ln -s ../../.docimp-shared/CLAUDE.md CLAUDE.md
 - **Permission whitelist**: Explicit allow/deny/ask for maximum control
 
 **Workflow**:
-- ✅ Update CLAUDE.md once → visible in all worktrees instantly
-- ✅ Add permission → applies to all Claude Code instances immediately
-- ✅ External docs loaded on-demand (keeps CLAUDE.md under 40KB)
-- ✅ Private context separated from public technical docs
+- ✓ Update CLAUDE.md once → visible in all worktrees instantly
+- ✓ Add permission → applies to all Claude Code instances immediately
+- ✓ External docs loaded on-demand (keeps CLAUDE.md under 40KB)
+- ✓ Private context separated from public technical docs
 
 **Next Steps**: See `INFRASTRUCTURE-DOCS_4-Quality-Checks.md` for quality enforcement configuration (ruff, ESLint, Prettier, pytest, Jest).

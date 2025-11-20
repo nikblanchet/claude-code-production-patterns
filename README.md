@@ -202,9 +202,8 @@ Git Integration (quality gates)
 ## Advanced Topics
 
 For deeper implementation details and additional patterns, see:
-- [`ADVANCED_PATTERNS.md`](ADVANCED_PATTERNS.md) - Comprehensive pattern guide
+- [`ADVANCED_PATTERNS.md`](ADVANCED_PATTERNS.md) - Comprehensive pattern guide including worktree orchestration
 - [`SCENARIO_JUSTIFICATION.md`](SCENARIO_JUSTIFICATION.md) - Why Scenario C
-- [`WORKTREE_PATTERN.md`](WORKTREE_PATTERN.md) - Worktree orchestration details
 
 ## Development Setup
 
