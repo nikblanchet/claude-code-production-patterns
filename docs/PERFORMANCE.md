@@ -1,6 +1,6 @@
 # Performance Documentation
 
-Comprehensive performance characteristics, optimization strategies, and measurement approaches for Claude Code Production Patterns (Scenario C).
+Comprehensive performance characteristics, optimization strategies, and measurement approaches for Claude Code Production Patterns.
 
 ---
 

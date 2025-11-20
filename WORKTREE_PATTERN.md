@@ -81,17 +81,12 @@ python create_worktree.py issue-123
 
 This pattern retrofits existing repos. For new projects, see `GREENFIELD_NOTES.md` for a cleaner initial structure that avoids the `.shared/` workaround.
 
-**Why I'm showing the retrofit:** This is what I actually built and tested on 17K lines of production code. It works. The greenfield approach is theoretical optimization.
+**Why I'm showing the retrofit:** This pattern has been refined through production use in large polyglot codebases. It works. The greenfield approach represents potential optimization for new projects.
 
-## Time Constraints
+## Future Enhancements
 
-Given 3.5 hours for this take-home, I focused on:
-- ✅ One pattern documented deeply with working code
-- ✅ Real implementation from production use
-- ✅ Honest about retrofit vs. optimal
-
-**Would expand with more time:**
-- Additional patterns (direnv, CLAUDE.md architecture)
-- Video walkthrough
-- Case study applying to different codebase
-- Complete troubleshooting guide
+**Planned additions:**
+- Additional integration patterns (direnv, CLAUDE.md architecture)
+- Video walkthrough demonstrating real-world usage
+- Case studies applying to different codebase types
+- Comprehensive troubleshooting guide

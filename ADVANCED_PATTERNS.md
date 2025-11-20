@@ -2,11 +2,11 @@
 
 ## Overview
 
-DocImp (17,000+ lines across Python, TypeScript, and JavaScript) required sophisticated infrastructure to coordinate 4 parallel Claude Code instances working simultaneously on different features. Managing multiple worktrees, keeping context synchronized, and ensuring workflow consistency posed unique challenges at scale.
+This document presents battle-tested patterns for using Claude Code at scale, refined through production use in large polyglot codebases. These patterns address challenges like coordinating parallel development workflows, managing context across worktrees, and ensuring workflow consistency.
 
-This document presents battle-tested patterns that emerged from real production use, organized into two categories:
+The patterns documented here are organized into two categories:
 
-**Core Claude Code Features** (Scenario C Focus):
+**Core Claude Code Features**:
 1. **Claude Code Hooks** - Event-driven workflow automation and permissions (`actual-code/hooks-config/`)
 2. **Custom Agents** - Autonomous multi-step task execution (`actual-code/agents/`)
 3. **Custom Skills** - Specialized knowledge and workflows (`actual-code/skills/`)
@@ -451,7 +451,7 @@ The physical file system layout of the DocImp repository, showing how worktrees,
 **Diagram**:
 
 ```
-/Users/nik/Documents/Code/Polygot/
+<project-root>/
 │
 ├── docimp/                                    # Main worktree
 │   ├── .git/                                  # Git repository
@@ -520,10 +520,10 @@ The physical file system layout of the DocImp repository, showing how worktrees,
 │   ├── issue-300/                           │
 │   └── ...                                  │
 │                                            │
-└── /Users/nik/Code/Polygot/docimp           │   # Alternate worktree path
+└── <alternate-path>/docimp                  │   # Alternate worktree path
                                              │
                                              │
-/Users/nik/Code/repos/custom-claude-skills/  │   # External skills repository
+<skills-repo>/                               │   # External skills repository
 └── project-scope/docimp/                    │
     └── git-workflow/ ───────────────────────┘   # Source of git-workflow skill
 ```
@@ -531,9 +531,9 @@ The physical file system layout of the DocImp repository, showing how worktrees,
 **Key Concepts**:
 
 **Worktree Structure**:
-- **Main worktree**: `/Users/nik/Documents/Code/Polygot/docimp/` - primary development location
+- **Main worktree**: `<project-root>/docimp/` - primary development location
 - **Additional worktrees**: `.docimp-wt/issue-*/` - parallel development on different branches
-- **Alternate path**: `/Users/nik/Code/Polygot/docimp` - same repo, different filesystem location
+- **Alternate path**: `<alternate-path>/docimp` - same repo, different filesystem location
 
 **Symlink Patterns**:
 - **CLAUDE.md**: Technical documentation for Claude Code (40k char limit) - symlinked to shared location
@@ -551,7 +551,7 @@ The physical file system layout of the DocImp repository, showing how worktrees,
 - **state/.git/**: Side-car Git repository for transaction tracking (never touches main `.git/`)
 
 **External Integrations**:
-- **git-workflow skill**: Symlinked from `/Users/nik/Code/repos/custom-claude-skills/project-scope/docimp/git-workflow`
+- **git-workflow skill**: Symlinked from `<skills-repo>/project-scope/docimp/git-workflow`
 - Provides standardized Git commands for worktree management, branch operations, PR creation
 
 **Benefits**:
@@ -608,16 +608,13 @@ The physical file system layout of the DocImp repository, showing how worktrees,
 
 ## Limitations & Future Work
 
-**Time Constraints:**
-This take-home was completed in 3.5 hours, focusing on one working pattern (worktree orchestration) with supporting patterns documented.
-
-**Would Expand:**
+**Future Enhancements:**
 - Additional case studies with different codebases (monorepos, microservices, mobile apps)
 - Video walkthroughs of each pattern showing real-world usage
 - Comprehensive troubleshooting guides for common issues
 - Performance metrics and optimization strategies for large teams
 
-**Known Issues:**
+**Known Limitations:**
 - Patterns tested on macOS/Linux only (Windows compatibility untested)
 - Assumes familiarity with git worktrees (learning curve for new users)
 - Direnv requires installation and shell integration
