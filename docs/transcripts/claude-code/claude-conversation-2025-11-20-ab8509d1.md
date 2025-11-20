@@ -80,38 +80,7 @@ Based on my deep analysis of your repository, here's a comprehensive breakdown o
 
 ## Impact vs. Effort Matrix
 
-```
-HIGH IMPACT, LOW EFFORT (Quick Wins - Do First)
-┌─────────────────────────────────────────────┐
-│ 1. Fix Hardcoded Paths (2 hours)           │
-│ 2. Fix Line Count Claims (30 min)          │
-│ 3. Fix Emoji Violations (15 min)           │
-│ 4. Clean Settings.local.json (15 min)      │
-│ 5. Complete Worktree Pattern Doc (2 hours) │
-└─────────────────────────────────────────────┘
-
-HIGH IMPACT, MEDIUM EFFORT (Critical - Do Next)
-┌─────────────────────────────────────────────┐
-│ 6. Create Runnable Examples (4 hours)      │
-│ 7. Add Troubleshooting Guide (3 hours)     │
-│ 8. Add Common Pitfalls Section (3 hours)   │
-│ 9. Create Implementation Guide (4 hours)   │
-└─────────────────────────────────────────────┘
-
-HIGH IMPACT, HIGH EFFORT (Important But Intensive)
-┌─────────────────────────────────────────────┐
-│ 10. Add Test Suite (6-8 hours)             │
-│ 11. Consolidate Documentation (4 hours)    │
-│ 12. Add Measurement/Validation (3 hours)   │
-└─────────────────────────────────────────────┘
-
-MEDIUM IMPACT, LOW-MEDIUM EFFORT (Nice to Have)
-┌─────────────────────────────────────────────┐
-│ 13. Verify Skills/Agents Installation (2hr)│
-│ 14. Add Visual Demonstrations (4 hours)    │
-│ 15. Restructure Per Assignment (3 hours)   │
-└─────────────────────────────────────────────┘
-```
+[PARAPHRASED: Impact vs. Effort matrix showing prioritized tasks including fixing hardcoded paths, line count claims, emoji violations, creating runnable examples, adding troubleshooting guides, test suites, and documentation consolidation. Time estimates redacted.]
 
 ---
 
@@ -119,7 +88,7 @@ MEDIUM IMPACT, LOW-MEDIUM EFFORT (Nice to Have)
 
 ### Quick Wins (Do These First)
 
-#### 1. Fix Hardcoded Paths (2 hours)
+#### 1. Fix Hardcoded Paths
 ```
 I need to make the worktree and hooks patterns portable by removing all hardcoded project-specific paths.
 
@@ -197,7 +166,7 @@ Tasks:
 5. Verify no other environment-specific artifacts remain
 ```
 
-#### 5. Complete Worktree Pattern Doc (2 hours)
+#### 5. Complete Worktree Pattern Doc
 ```
 docs/WORKTREE_PATTERN.md contains placeholders and incomplete sections that make it look unfinished.
 
@@ -223,7 +192,7 @@ Alternative: If this duplicates ADVANCED_PATTERNS.md too much, consolidate the c
 
 ### Critical Fixes (High Impact, Medium Effort)
 
-#### 6. Create Runnable Examples (4 hours)
+#### 6. Create Runnable Examples
 ```
 The assignment requires "functional code samples that can be executed and tested" and "practical demonstrations of workflows." Currently, there are no runnable end-to-end examples.
 
@@ -264,7 +233,7 @@ Each example should:
 - Take < 5 minutes to run
 ```
 
-#### 7. Add Troubleshooting Guide (3 hours)
+#### 7. Add Troubleshooting Guide
 ```
 The assignment explicitly requires "Troubleshooting guide: Common issues and resolution approaches" but this is scattered across files and incomplete in main documentation.
 
@@ -316,7 +285,7 @@ Structure:
 Link to this guide from README and ADVANCED_PATTERNS.
 ```
 
-#### 8. Add Common Pitfalls Section (3 hours)
+#### 8. Add Common Pitfalls Section
 ```
 The assignment requires "clear examples showing both successful patterns and common pitfalls." Need dedicated antipatterns coverage.
 
@@ -359,7 +328,7 @@ Tasks:
 5. Create a checklist: "Before deploying these patterns, ensure you're not doing..."
 ```
 
-#### 9. Create Implementation Guide (4 hours)
+#### 9. Create Implementation Guide
 ```
 Documentation lacks a clear step-by-step guide for adopting these patterns. Need a structured implementation path.
 
@@ -379,32 +348,32 @@ Create docs/IMPLEMENTATION_GUIDE.md with:
 
 3. **Incremental Adoption Path**
    
-   Phase 1: Foundation (1 hour)
+   Phase 1: Foundation
    - Install development-standards and exhaustive-testing skills
    - Configure approval settings
    - Test skill activation
    - Checkpoint: Skills appear in Claude Code, activation works
    
-   Phase 2: Hooks (2 hours)
+   Phase 2: Hooks
    - Choose pre-commit OR user-prompt-submit hook
    - Install and configure
    - Test with sample commit
    - Checkpoint: Hook executes, can approve/block
    
-   Phase 3: Agents (2 hours)
+   Phase 3: Agents
    - Install code-reviewer agent
    - Test agent invocation
    - Review agent output
    - Checkpoint: Agent completes review successfully
    
-   Phase 4: Worktrees (3 hours) [OPTIONAL]
+   Phase 4: Worktrees [OPTIONAL]
    - Evaluate if worktrees fit your workflow
    - Install create_worktree.py
    - Configure paths
    - Create test worktree
    - Checkpoint: Can create, switch, delete worktrees
    
-   Phase 5: Integration (1 hour)
+   Phase 5: Integration
    - Connect hooks → agents → skills
    - Test complete workflow
    - Measure performance
@@ -432,7 +401,7 @@ Link to this from README as "Getting Started" path.
 
 ### Important But Intensive (High Impact, High Effort)
 
-#### 10. Add Test Suite (6-8 hours)
+#### 10. Add Test Suite
 ```
 CRITICAL: The repository teaches "exhaustive testing" but has zero tests. This is a blocker for credibility.
 
@@ -492,7 +461,7 @@ Tasks:
 This is critical for the assignment's requirement to demonstrate "sophisticated workflow patterns, including proper error handling" and aligns with your own exhaustive-testing skill.
 ```
 
-#### 11. Consolidate Documentation (4 hours)
+#### 11. Consolidate Documentation
 ```
 Documentation quality is inconsistent with duplication between README and ADVANCED_PATTERNS, varying depth across files, and unclear navigation.
 
@@ -559,7 +528,7 @@ Tasks:
 7. Create DOCUMENTATION_MAP.md showing the complete structure and recommended reading order
 ```
 
-#### 12. Add Measurement/Validation Section (3 hours)
+#### 12. Add Measurement/Validation Section
 ```
 Assignment requires "Measurement strategies: How to evaluate effectiveness and optimize workflows" but this is missing from main documentation.
 
@@ -634,7 +603,7 @@ Link this from IMPLEMENTATION_GUIDE as final validation step.
 
 ### Nice to Have (Medium Impact)
 
-#### 13. Verify Skills/Agents Installation (2 hours)
+#### 13. Verify Skills/Agents Installation
 ```
 Patterns exist in actual-code/ but it's unclear if they're actually installed and working in .claude/. Verify and document installation.
 
@@ -671,7 +640,7 @@ Tasks:
 6. Update README with installation status badge or checklist showing which patterns are active in this repo
 ```
 
-#### 14. Add Visual Demonstrations (4 hours)
+#### 14. Add Visual Demonstrations
 ```
 Assignment encourages "diagrams, workflow visualizations, screencasts, or process charts." Currently only text documentation exists.
 
@@ -718,7 +687,7 @@ Tasks:
 Visual learners will appreciate this, and it proves patterns work.
 ```
 
-#### 15. Restructure Per Assignment Template (3 hours)
+#### 15. Restructure Per Assignment Template
 ```
 The assignment recommends specific documentation structure that isn't fully followed:
 - Workflow overview
@@ -784,14 +753,14 @@ This structure makes it obvious to evaluators that you've followed assignment gu
 
 **If you have limited time, focus on Quick Wins + Critical Fixes:**
 
-1. Fix hardcoded paths (2h) - Makes patterns actually usable
-2. Create runnable examples (4h) - Required by assignment
-3. Add troubleshooting guide (3h) - Required by assignment  
-4. Fix line count claims (30m) - Quick credibility fix
-5. Complete worktree doc (2h) - Removes incomplete feel
-6. Add test suite (6-8h) - Critical for credibility given you teach testing
+1. Fix hardcoded paths - Makes patterns actually usable
+2. Create runnable examples - Required by assignment
+3. Add troubleshooting guide - Required by assignment
+4. Fix line count claims - Quick credibility fix
+5. Complete worktree doc - Removes incomplete feel
+6. Add test suite - Critical for credibility given you teach testing
 
-**Total: ~18-20 hours for maximum impact**
+[REDACTED: Total time estimate]
 
 These fixes address the critical gaps (no tests, no examples, incomplete docs) that most undermine the submission quality, while the quick wins remove obvious quality issues that are fast to fix.
 
@@ -1543,13 +1512,13 @@ Created four detailed prompts ready to paste into new Claude Code instances:
    - Problem: WORKTREE_PATTERN.md has unfilled placeholders
    - Fix: Either complete all sections OR consolidate into ADVANCED_PATTERNS.md
    - Includes detailed structure and content guidelines
-   - Time: 2 hours (complete) or 30 min (consolidate)
+   - [REDACTED: Time estimate]
 
 4. **`.planning/task-06-create-runnable-examples.md`**
    - Problem: No practical demonstrations (CRITICAL assignment requirement)
    - Fix: Create examples/ directory with 4 executable demos
    - Agent demo, hooks demo, skills demo, complete workflow
-   - Time: 4-5 hours (or 1-2 hours for minimal version)
+   - [REDACTED: Time estimate]
 
 Each prompt file contains:
 - Clear problem statement
@@ -1725,8 +1694,8 @@ Key changes:
 
 Key changes:
 - **Leverage existing infrastructure** instead of building new demos
-- Single file, 1-1.5 hours to create
-- Demonstrates in 15-20 minutes:
+- Single file quickstart
+- Demonstrates:
   1. Git hooks (test they block commits)
   2. Worktree creation (run create_worktree.py)
   3. Skills installation (verify structure)

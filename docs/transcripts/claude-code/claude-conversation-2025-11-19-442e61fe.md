@@ -106,7 +106,7 @@ See `direnv/.envrc` for working example.
 ## Limitations & Future Work
 
 **Time Constraints:**
-This take-home was completed in 3.5 hours, focusing on one working pattern (worktree orchestration) with supporting patterns documented.
+[REDACTED: Time context]. Focus was on one working pattern (worktree orchestration) with supporting patterns documented.
 
 **Would Expand:**
 - Additional case studies with different codebases

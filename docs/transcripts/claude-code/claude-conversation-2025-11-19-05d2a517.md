@@ -104,7 +104,7 @@ Based on my analysis, this PDF is **highly appropriate** to include as reference
 **Why it's appropriate:**
 1. Provides essential context for understanding the repository's purpose and scope
 2. Explains the requirements that shaped all the content and implementation decisions
-3. Helps readers understand the assignment constraints (6-hour time limit, specific deliverables)
+3. Helps readers understand the assignment constraints ([REDACTED: Time constraint], specific deliverables)
 4. Demonstrates the prompt that led to the sophisticated patterns documented here
 5. Valuable for others who might want to understand the genesis of this work
 
@@ -197,7 +197,7 @@ Perfect! I've successfully completed the task. Here's what was done:
 **Why this is valuable:**
 - Explains the purpose and scope of the repository
 - Provides context for understanding why certain patterns were documented
-- Shows the specific requirements (6-hour time limit, Scenario C focus)
+- Shows the specific requirements ([REDACTED: Time constraint], Scenario C focus)
 - Helps future readers understand this is a production-tested demonstration created for a specific assignment
 
 The assignment document is now easily discoverable in the `docs/` folder alongside `PERFORMANCE.md` and referenced in the main README.

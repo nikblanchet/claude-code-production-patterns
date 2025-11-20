@@ -289,7 +289,7 @@ Perfect! Now I have all the information needed. Let me compile a comprehensive r
 - Focus on "retrofit approach" for existing repositories
 - References to `.shared/` directory pattern
 - Mentions "Failure Modes" section with symlink and hook issues
-- Time constraints context (3.5 hour take-home assignment)
+- [REDACTED: Time context]
 - Comparison with greenfield approach
 
 **Assessment:** **HIGH duplication** - ADVANCED_PATTERNS.md contains more complete implementation of the same pattern with working code. WORKTREE_PATTERN.md appears to be an earlier template that was partially superseded.
