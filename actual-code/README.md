@@ -51,11 +51,11 @@ The DocImp project uses a more comprehensive version designed for polyglot codeb
 | **Setup time** | ~30-60s | ~2-5 min |
 | **Worktree location** | `../feature-x/` (siblings) | `../.docimp-wt/issue-221/` |
 | **Shared files** | None | 7 symlinks |
-| **npm handling** | ❌ | ✅ install + build |
-| **Husky hooks** | ❌ | ✅ configured |
-| **direnv** | ❌ | ✅ enabled |
-| **nvm/Node** | ❌ | ✅ version managed |
-| **Git hooks install** | ❌ | ✅ automated |
+| **npm handling** | ✗ | ✓ install + build |
+| **Husky hooks** | ✗ | ✓ configured |
+| **direnv** | ✗ | ✓ enabled |
+| **nvm/Node** | ✗ | ✓ version managed |
+| **Git hooks install** | ✗ | ✓ automated |
 
 ## DocImp Additional Features
 
@@ -135,19 +135,19 @@ npm install && npm run build
 
 ### Use This Version
 
-- ✅ Pure Python projects with pyproject.toml
-- ✅ Teaching/learning worktree workflows
-- ✅ Minimal infrastructure desired
-- ✅ No shared configuration needed
-- ✅ Fast setup required
+- Pure Python projects with pyproject.toml
+- Teaching/learning worktree workflows
+- Minimal infrastructure desired
+- No shared configuration needed
+- Fast setup required
 
 ### Use DocImp Version
 
-- ✅ Polyglot codebases (Python + TypeScript/JavaScript)
-- ✅ Multiple developers/AI agents need shared config
-- ✅ Tool enforcement (direnv, hooks) required
-- ✅ Protected main branch workflow
-- ✅ Production infrastructure patterns needed
+- Polyglot codebases (Python + TypeScript/JavaScript)
+- Multiple developers/AI agents need shared config
+- Tool enforcement (direnv, hooks) required
+- Protected main branch workflow
+- Production infrastructure patterns needed
 
 ## Migration Path
 
