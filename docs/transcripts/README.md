@@ -19,7 +19,7 @@ transcripts/
 └── README.md             # This file
 ```
 
-**Note**: Some transcript files have been edited to remove personal information while preserving all technical content.
+**Note**: Some transcript files have been edited to remove personal information while preserving all technical content. Most edits are clearly marked with `[REDACTED]` or `[PARAPHRASE]` tags. For minor wording changes, lines beginning with `✎` indicate text modifications made for public disclosure.
 
 ## Claude Code Transcripts
 
