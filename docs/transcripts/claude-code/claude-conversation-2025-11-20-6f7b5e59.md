@@ -595,3 +595,88 @@ Input: {
 
 ---
 
+## 🤖 Claude
+
+Great! The extraction worked but saved to the Desktop. Let me move those files to our transcripts directory:
+
+---
+
+## 🤖 Claude
+
+
+🔧 Using tool: Bash
+Input: {
+  "command": "mv ~/Desktop/\"Claude logs\"/*.md transcripts/claude-code/ && rmdir ~/Desktop/\"Claude logs\" 2>/dev/null; ls -lh transcripts/claude-code/ | head -20",
+  "description": "Move extracted transcripts to project folder"
+}
+
+
+---
+
+## 🤖 Claude
+
+
+🔧 Using tool: Bash
+Input: {
+  "command": "ls -la \"/Users/nik/Desktop/Claude logs/\"",
+  "description": "Check Desktop Claude logs directory"
+}
+
+
+---
+
+## 🤖 Claude
+
+
+🔧 Using tool: Bash
+Input: {
+  "command": "mv \"/Users/nik/Desktop/Claude logs\"/*.md /Users/nik/Documents/Code/claude-code-production-patterns/main/docs/transcripts/claude-code/ && rmdir \"/Users/nik/Desktop/Claude logs\"",
+  "description": "Move files to transcripts directory"
+}
+
+
+---
+
+## 🤖 Claude
+
+
+🔧 Using tool: Bash
+Input: {
+  "command": "ls -lh transcripts/claude-code/",
+  "description": "List extracted transcripts"
+}
+
+
+---
+
+## 🤖 Claude
+
+
+🔧 Using tool: Bash
+Input: {
+  "command": "pwd && ls -la",
+  "description": "Check current directory"
+}
+
+
+---
+
+## 🤖 Claude
+
+Excellent! I have 10 transcripts extracted. Now let me extract more sessions from today to cover the full ~5 hours of work. Let me extract around 50 recent sessions:
+
+---
+
+## 🤖 Claude
+
+
+🔧 Using tool: Bash
+Input: {
+  "command": "~/.local/bin/claude-extract --recent 50 --format markdown --detailed",
+  "description": "Extract 50 most recent sessions",
+  "timeout": 120000
+}
+
+
+---
+
