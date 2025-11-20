@@ -153,7 +153,7 @@ Meta-skills from Claude Code:
 Repository-specific workflows:
 
 - **git-workflow**: Worktree-based development, commit standards, branch management
-  - **Bundles**: `scripts/create_worktree.py` (798 lines) - full worktree automation
+  - **Bundles**: `scripts/create_worktree.py` - full worktree automation
   - Demonstrates skill script bundling pattern
 
 ### When to Use Skills vs Agents vs Hooks
@@ -308,7 +308,7 @@ If you have an existing repo, you can adopt worktrees incrementally:
 
 ### Automation: create_worktree.py
 
-The `create_worktree.py` script (798 lines, available in `actual-code/skills/git-workflow/scripts/`) automates the entire workflow:
+The `create_worktree.py` script (available in `actual-code/skills/git-workflow/scripts/`) automates the entire workflow:
 
 ```bash
 python3 create_worktree.py feature-name branch-name
@@ -938,4 +938,4 @@ This take-home was completed in 3.5 hours, focusing on one working pattern (work
 - **Source Code**: DocImp at [github.com/nikblanchet/docimp](https://www.github.com/nikblanchet/docimp)
 - **Working Implementation**: See `actual-code/` directory in this repository
 - **Planning Strategy**: See `PLANNING.md` for development approach
-- **Worktree Creation Script**: `actual-code/create_worktree.py` (1066 lines, production-ready)
+- **Worktree Creation Script**: `actual-code/create_worktree.py` (production-ready)
