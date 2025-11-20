@@ -18,7 +18,7 @@ If starting fresh, I would:
 
 **Most real teams are retrofitting, not starting fresh.** This pattern shows practical adaptation to existing codebases, which is more valuable than theoretical optimization.
 
-The retrofit approach is battle-tested on 17K+ lines of production code. The greenfield approach is architectural idealization.
+The retrofit approach has been refined through production use in large codebases. The greenfield approach represents architectural optimization for new projects.
 
 ## Key Differences
 
