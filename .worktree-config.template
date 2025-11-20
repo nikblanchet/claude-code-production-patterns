@@ -1,0 +1,28 @@
+# Worktree Configuration Template
+#
+# Copy this file to .worktree-config and customize for your project.
+# The git hooks (pre-commit, post-checkout) will read this configuration
+# to determine which worktrees are "feature worktrees" vs the "main worktree".
+#
+# Usage:
+#   cp .worktree-config.template .worktree-config
+#   # Edit .worktree-config with your project-specific values
+#   # Add .worktree-config to .gitignore (it's project-specific)
+
+# WORKTREE_PATTERN: The path pattern that identifies feature worktrees
+# Feature worktrees should contain this pattern in their absolute path
+# Main worktree should NOT contain this pattern
+#
+# Examples:
+#   WORKTREE_PATTERN="/.myproject-wt/"   # For worktrees like /path/to/myproject-wt-feature/
+#   WORKTREE_PATTERN="-wt-"              # For worktrees like /path/to/project-wt-feature/
+#   WORKTREE_PATTERN="/worktrees/"       # For worktrees in /path/to/worktrees/feature/
+WORKTREE_PATTERN="/.docimp-wt/"
+
+# PROJECT_ROOT: Optional. The root directory of your main worktree
+# If not set, hooks will auto-detect using git rev-parse --show-toplevel
+# PROJECT_ROOT="/Users/username/projects/myproject"
+
+# CREATE_WORKTREE_SCRIPT: Path to the create_worktree.py script
+# Relative to the project root, or absolute path
+CREATE_WORKTREE_SCRIPT="actual-code/create_worktree.py"

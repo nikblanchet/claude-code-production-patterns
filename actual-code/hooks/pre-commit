@@ -23,9 +23,27 @@ fi
 # Get the absolute path of the current worktree
 current_worktree=$(git rev-parse --show-toplevel)
 
+# Load worktree configuration
+WORKTREE_PATTERN=""
+CREATE_WORKTREE_SCRIPT="actual-code/create_worktree.py"
+if [ -f "$current_worktree/.worktree-config" ]; then
+    source "$current_worktree/.worktree-config"
+fi
+
+# Fallback: If no config file, try to auto-detect
+if [ -z "$WORKTREE_PATTERN" ]; then
+    # Look for common worktree patterns in the path
+    if [[ "$current_worktree" =~ -wt- ]]; then
+        WORKTREE_PATTERN="-wt-"
+    else
+        # Default pattern for this project
+        WORKTREE_PATTERN="/.docimp-wt/"
+    fi
+fi
+
 # Get list of all worktrees and check if current is the main worktree
-# The main worktree is the one that doesn't have "/.docimp-wt/" in its path
-if [[ ! "$current_worktree" =~ /.docimp-wt/ ]]; then
+# The main worktree is the one that doesn't have the WORKTREE_PATTERN in its path
+if [[ ! "$current_worktree" =~ $WORKTREE_PATTERN ]]; then
     # We're in the main worktree - block the commit
     echo ""
     echo -e "${RED}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
@@ -38,10 +56,10 @@ if [[ ! "$current_worktree" =~ /.docimp-wt/ ]]; then
     echo "All development work should be done in feature worktrees."
     echo ""
     echo "To create a new feature worktree:"
-    echo "  python3 actual-code/create_worktree.py <worktree-name> <branch-name>"
+    echo "  python3 $CREATE_WORKTREE_SCRIPT <worktree-name> <branch-name>"
     echo ""
     echo "Example:"
-    echo "  python3 actual-code/create_worktree.py issue-260 issue-260-fix-bug"
+    echo "  python3 $CREATE_WORKTREE_SCRIPT issue-260 issue-260-fix-bug"
     echo ""
     echo "If you need to bypass this check (for maintenance only):"
     echo "  git commit --no-verify"
