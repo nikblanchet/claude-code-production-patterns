@@ -17,6 +17,9 @@ dev = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.wheel]
+packages = ["actual-code"]
+
 [tool.ruff]
 line-length = 88
 target-version = "py314"
