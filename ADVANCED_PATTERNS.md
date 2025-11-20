@@ -2,246 +2,554 @@
 
 ## Overview
 
-DocImp (17,000+ lines across Python, TypeScript, and JavaScript) required sophisticated infrastructure to coordinate 4 parallel Claude Code instances working simultaneously on different features. Managing multiple worktrees, keeping context synchronized, and ensuring workflow consistency posed unique challenges at scale.
+This repository demonstrates advanced patterns for using Claude Code on enterprise-scale projects. **Every pattern documented here is implemented in this codebase** - you can examine the working code in `actual-code/` and see it activated via symlinks in `.claude/`.
 
-This document presents battle-tested patterns that emerged from real production use, organized into two categories:
+These patterns solve a critical challenge in AI-assisted development: **how to run multiple Claude Code agents in parallel without conflicts**. By combining git worktrees, custom agents, skills, and hooks, you can decompose large tasks into smaller, parallelizable units that maintain code quality while avoiding context bloat.
 
-**Core Claude Code Features** (Scenario C Focus):
-1. **Claude Code Hooks** - Event-driven workflow automation and permissions (`actual-code/hooks-config/`)
-2. **Custom Agents** - Autonomous multi-step task execution (`actual-code/agents/`)
-3. **Custom Skills** - Specialized knowledge and workflows (`actual-code/skills/`)
+**Audience:** Senior developers and teams managing large codebases (100K+ lines) who need sophisticated Claude Code workflows beyond basic usage.
 
-**Supporting Git Patterns**:
-4. **Git Worktree Orchestration** - Path-based detection and automated hooks for branch protection
-5. **CLAUDE.md Context Management** - External imports to overcome the 40KB character limit
-6. **Direnv Tool Interception** - PATH manipulation for workflow enforcement with helpful errors
+## Table of Contents
 
-These patterns are designed for senior developers managing large codebases (100K+ lines) who need to coordinate multiple concurrent development workflows while maintaining strict quality gates. Each pattern includes working code, implementation guidance, and honest assessment of when to use (or avoid) the approach.
+### Core Claude Code Patterns (Scenario C)
+
+1. **[Custom Agents](#pattern-1-custom-agents)** - Autonomous task execution with structured workflows
+   *Implemented:* `actual-code/agents/` → `.claude/agents/`
+
+2. **[Custom Skills](#pattern-2-custom-skills)** - Reusable knowledge modules with bundled resources
+   *Implemented:* `actual-code/skills/` → `.claude/skills/`
+
+3. **[Claude Code Hooks](#pattern-3-claude-code-hooks)** - Event-driven automation and permissions
+   *Implemented:* `actual-code/hooks-config/settings.local.json` → `.claude/settings.local.json`
+
+### Infrastructure Patterns
+
+4. **[Git Worktree Orchestration](#pattern-4-git-worktree-orchestration)** - Parallel agents without merge conflicts
+   *Implemented:* Path-based detection, automated via `create_worktree.py`
+
+5. **[Git Hooks for AI Safety](#pattern-5-git-hooks-for-ai-safety)** - Protect main branch from agentic workflows
+   *Implemented:* `actual-code/hooks/` two-tier architecture (Git + Husky)
+
+6. **[Symlink Discovery Pattern](#pattern-6-symlink-discovery-pattern)** - Separate documentation from runtime
+   *Implemented:* `actual-code/` → `.claude/` symlink structure
+
+7. **[CLAUDE.md Context Management](#pattern-7-claudemd-context-management)** - Stay under 40KB with external imports
+   *Implemented:* `@docs/` import pattern
+
+8. **[Direnv Tool Interception](#pattern-8-direnv-tool-interception)** - PATH manipulation for workflow enforcement
+   *Implemented:* Python/pip interceptors with educational errors
+
+### Placeholder Patterns (Future Work)
+
+9. **Environment Automation Beyond Direnv** - Additional context-aware triggers
+   *Status:* Documented in DocImp, not yet ported to this repo
+
+10. **CI/CD Integration** - GitHub Actions for AI-assisted development
+    *Status:* Planned for future implementation
 
 ---
 
-## Pattern 0: Claude Code Hooks, Agents, and Skills
+## Why These Patterns Matter
 
-Before diving into Git integration patterns, it's critical to understand Claude Code's native features for workflow automation. These are the foundation of Scenario C.
+**The Parallel Agent Problem:**
+Smaller-scoped agents produce better code quality and manage context more effectively. However, running agents serially is slow. The solution: **parallelize agents across git worktrees**.
 
-### Claude Code Hooks
+**The Tradeoff:**
+This shifts burden from execution (fast parallel agents) to setup (worktree infrastructure) and planning (decomposing tasks properly). The payoff: multiple agents working simultaneously without merge hell.
 
-**Location**: `actual-code/hooks-config/`
+**Prerequisites:**
+Good task decomposition skills. If tasks have sequential dependencies, even worktrees won't help.
 
-Event-driven shell commands that execute during Claude Code sessions. Unlike Git hooks (which respond to Git operations), Claude Code hooks respond to AI assistance events.
+---
 
-**Key hook types**:
-- `user-prompt-submit`: Runs when user submits a prompt
-- `tool-call`: Intercepts tool execution
-- `session-start` / `session-end`: Lifecycle management
+## Pattern 1: Custom Agents
 
-**Example use cases**:
+Autonomous subprocesses that execute complex multi-step tasks with isolated context (fresh eyes, no conversation history).
+
+### Why Agents Matter
+
+When tasks require multiple steps, context analysis, and decision-making, agents provide structured autonomy. Unlike direct prompting, agents follow predefined workflows and can make decisions without human intervention at each step.
+
+### Location and Structure
+
+**Source**: `actual-code/agents/` → **Runtime**: `.claude/agents/` (symlinked)
+
+### Agent Types
+
+#### User Agents (`actual-code/agents/user/`)
+
+Cross-project, language-specific agents you'd use across multiple repositories:
+
+**python-313-conventions**:
+- Python 3.13+ modernization reviewer
+- 10 review dimensions: typing design, API contracts, async patterns, architectural cohesion
+- Complements automation (Ruff/mypy handle syntax; this handles semantic design)
+- Catches patterns automation cannot check (e.g., inconsistent error handling philosophy)
+
+#### Project Agents (`actual-code/agents/project/`)
+
+Repository-specific workflow agents:
+
+**code-reviewer**:
+- Autonomous 11-dimension code review
+- Gathers context from PR description, `.planning/PLAN.md`, linked issues
+- Checks previous review blockers (converts them to acceptance criteria)
+- Classifies findings: Blocker, Important, Minor, Enhancement
+- Saves detailed markdown review, posts summary comment to PR
+
+### Invocation Patterns
+
+Agents appear in Claude Code's agent menu and can be invoked via prompts referencing their name. Best practice: explicit invocation after completing a milestone.
+
+**Example**: "Run the python-313-conventions agent to review my changes"
+
+### Agent vs Skill vs Hook
+
+| Feature | Agents | Skills | Hooks |
+|---------|--------|--------|-------|
+| **What** | Autonomous subprocess | Knowledge in context | Event-driven command |
+| **When** | Complex multi-step tasks | Provide expertise | Respond to events |
+| **Context** | Isolated (fresh eyes) | Shared with main session | Runs in shell |
+| **Example** | Code reviewer | Git workflow standards | Inject git status |
+
+See `actual-code/agents/*/README.md` for detailed agent documentation.
+
+---
+
+## Pattern 2: Custom Skills
+
+Specialized knowledge and workflows loaded into Claude Code's context when needed. Skills provide domain expertise without requiring separate subprocess execution.
+
+### Location and Structure
+
+**Source**: `actual-code/skills/` → **Runtime**: `.claude/skills/` (symlinked)
+
+Skills can bundle:
+- `skill.md` - Core documentation and instructions
+- `scripts/` - Supporting automation (e.g., `create_worktree.py`)
+- `references/` - Additional context materials
+- `assets/` - Configuration templates, examples
+
+### Skill Categories
+
+#### User Skills (`actual-code/skills/user/` - 6 skills)
+
+Cross-project standards and practices:
+
+- **development-standards**: No emoji in commits/code, use modern language features, comprehensive documentation (CRITICAL - enforced across all work)
+- **exhaustive-testing**: Comprehensive test coverage philosophy (unit, integration, regression, e2e)
+- **handle-deprecation-warnings**: Proactive dependency migration (notice warnings, update immediately)
+- **dependency-management**: When to use libraries vs build custom (bias toward quality dependencies)
+- **cli-ux-colorful**: Terminal output formatting (rich/chalk libraries, ANSI colors)
+- **access-skill-resources**: How to navigate skill bundles and use bundled scripts
+
+#### Official Skills (`actual-code/skills/official/`)
+
+Meta-skills from Claude Code:
+
+- **skill-creator**: Guide for creating effective new skills (structure, best practices, examples)
+
+#### Project Skills (`actual-code/skills/project/`)
+
+Repository-specific workflows:
+
+- **git-workflow**: Worktree-based development, commit standards, branch management
+  - **Bundles**: `scripts/create_worktree.py` (798 lines) - full worktree automation
+  - Demonstrates skill script bundling pattern
+
+### When to Use Skills vs Agents vs Hooks
+
+- **Skill**: Provide domain knowledge (brand guidelines, API documentation, workflow procedures)
+- **Agent**: Execute complex tasks requiring decisions (code review, comprehensive refactoring)
+- **Hook**: Automate on events (inject context, run checks, enforce standards)
+
+See `actual-code/skills/*/README.md` for skill-specific documentation.
+
+---
+
+## Pattern 3: Claude Code Hooks
+
+Event-driven shell commands that execute during Claude Code sessions. **Critical distinction**: These are NOT Git hooks (which respond to Git operations like commit/push). Claude Code hooks respond to AI assistance events.
+
+### Location and Structure
+
+**Source**: `actual-code/hooks-config/settings.local.json` → **Runtime**: `.claude/settings.local.json` (gitignored, user-specific)
+
+### Hook Types
+
+**Available Events**:
+- `user-prompt-submit`: Runs when user sends a message to Claude
+- `tool-call`: Executes before Claude uses any tool
+- `session-start`: Triggers when Claude Code session begins
+- `session-end`: Runs when session terminates
+
+### Example Use Cases
+
 ```json
 {
   "hooks": {
     "user-prompt-submit": {
       "command": "git status --short",
       "_comment": "Inject git status so Claude knows about uncommitted changes"
+    },
+    "session-start": {
+      "command": "uv pip list | grep -i outdated",
+      "_comment": "Check for outdated dependencies on session start"
+    },
+    "tool-call": {
+      "command": "echo '[TOOL] {{tool_name}}' >> .claude/tool-log.txt",
+      "_comment": "Log every tool call for debugging"
     }
   }
 }
 ```
 
-**Permissions system**:
-- `allow`: Tools Claude can use freely
-- `deny`: Tools blocked completely
-- `ask`: Tools requiring user approval
+### Permissions System
 
-**Critical distinction**: Claude Code hooks ≠ Git hooks
-- Claude Code hooks: During AI sessions (prompt submit, tool calls)
-- Git hooks: During Git operations (commit, push, checkout)
+Fine-grained control over Claude's tool usage:
 
-See [`actual-code/hooks-config/README.md`](actual-code/hooks-config/README.md) for comprehensive documentation.
+- `allow`: Tools Claude can use without asking (e.g., `["Read", "Glob", "Grep", "git status"]`)
+- `deny`: Tools blocked completely (e.g., `["rm", "sudo"]`)
+- `ask`: Tools requiring user approval each time (e.g., `["git commit", "git push", "npm install"]`)
 
----
+**Example**:
+```json
+{
+  "permissions": {
+    "allow": ["Read", "Glob", "Grep", "git log", "pytest"],
+    "deny": ["python -m pip", "sudo"],
+    "ask": ["git commit", "git push", "gh pr create"]
+  }
+}
+```
 
-### Custom Agents
+### Critical Distinction: Claude Code Hooks ≠ Git Hooks
 
-**Location**: `actual-code/agents/`
+Don't confuse these hook systems:
 
-Autonomous subprocesses that execute complex multi-step tasks with fresh eyes (no inherited conversation context).
+| | Claude Code Hooks | Git Hooks |
+|---|---|---|
+| **Trigger** | AI session events | Git operations |
+| **Examples** | prompt-submit, tool-call | pre-commit, post-checkout |
+| **Location** | `.claude/settings.local.json` | `.git/hooks/` or `.husky/` |
+| **Purpose** | Inject context, control permissions | Enforce quality gates |
 
-**User Agents** (`actual-code/agents/user/`):
-- **python-313-conventions**: Python 3.13+ modernization reviewer
-  - 10 review dimensions: typing design, API contracts, async patterns, etc.
-  - Complements automation (Ruff/mypy) with semantic review
-  - Catches design patterns automation cannot check
-
-**Project Agents** (`actual-code/agents/project/`):
-- **code-reviewer**: Autonomous 11-dimension code review
-  - Gathers requirements from PR, .planning/PLAN.md, linked issues
-  - Checks previous review blockers (now acceptance criteria)
-  - Classifies: Blocker, Important, Minor, Enhancement
-  - Saves detailed review, posts summary to PR
-
-**Agent vs Skill vs Hook**:
-| Feature | Agents | Skills | Hooks |
-|---------|--------|--------|-------|
-| **What** | Autonomous subprocess | Knowledge in context | Event-driven command |
-| **When** | Complex multi-step tasks | Provide expertise | Respond to events |
-| **Context** | Isolated (fresh eyes) | Shared | Runs in shell |
-| **Example** | Code reviewer | Git workflow standards | Inject git status |
-
-See agent READMEs for invocation patterns and examples.
+See `actual-code/hooks-config/README.md` for comprehensive documentation and advanced patterns.
 
 ---
 
-### Custom Skills
+## Integration Pattern: How Patterns Work Together
 
-**Location**: `actual-code/skills/`
-
-Specialized knowledge and workflows loaded into context when relevant.
-
-**User Skills** (`actual-code/skills/user/` - 6 skills):
-- **development-standards**: No emoji, modern features, thorough docs (CRITICAL)
-- **exhaustive-testing**: Comprehensive test coverage
-- **handle-deprecation-warnings**: Proactive API migration
-- **dependency-management**: Library usage philosophy
-- **cli-ux-colorful**: Terminal formatting
-- **access-skill-resources**: Navigate skill bundles
-
-**Official Skills** (`actual-code/skills/official/`):
-- **skill-creator**: Guide for creating effective skills
-
-**Project Skills** (`actual-code/skills/project/`):
-- **git-workflow**: Git worktree-based workflow, commit standards, branch management
-
-**When to use**:
-- **Skill**: Provide domain knowledge (brand guidelines, API docs, workflows)
-- **Agent**: Execute complex tasks (code review, test generation)
-- **Hook**: Automate on events (inject context, enforce standards)
-
-See skill READMEs for detailed instructions.
-
----
-
-## Integration Pattern: Hooks + Skills + Agents
-
-These features work together powerfully:
+These patterns create a layered quality and automation framework:
 
 ```
-1. Hook triggers on event
-   ↓
-2. Skill provides domain knowledge
-   ↓
-3. Agent executes complex task
-   ↓
-4. Git hooks enforce quality gates
+1. User submits prompt
+   ↓ (Claude Code Hook: user-prompt-submit)
+2. Hook injects git status into context
+   ↓ (Skill provides domain knowledge)
+3. git-workflow skill provides commit standards
+   ↓ (Agent executes complex task)
+4. code-reviewer agent performs 11-dimension review
+   ↓ (Git Hook provides final gate)
+5. pre-commit hook blocks if tests fail or wrong branch
 ```
 
 **Example workflow**:
-1. User submits prompt → `user-prompt-submit` hook injects git status
-2. `git-workflow` skill provides commit standards and worktree guidance
+1. `user-prompt-submit` hook injects uncommitted file list
+2. `git-workflow` skill provides worktree guidance and commit message standards
 3. `code-reviewer` agent autonomously reviews changes across 11 dimensions
-4. Git `pre-commit` hook blocks commit if tests fail or on wrong branch
+4. Git `pre-commit` hook (Pattern 5) blocks commit if quality gates fail
 
-This creates a robust quality framework where:
-- Hooks ensure Claude has necessary context
-- Skills provide consistent guidance
-- Agents handle complex multi-step tasks
-- Git hooks provide final safety net
+**Result**: Robust quality framework where each layer reinforces the others.
 
 ---
 
-## Pattern 1: Git Worktree Orchestration
+## Pattern 4: Git Worktree Orchestration
 
-This pattern provides the foundation for isolation, ensuring the main worktree remains stable while feature worktrees handle active development.
+Run multiple Claude Code agents in parallel without merge conflicts. This pattern provides the foundation for isolation, ensuring the main worktree remains stable while feature worktrees handle active development.
 
-# Git Hooks: Path-Based Worktree Detection
+### Why Worktrees Solve the Parallel Agent Problem
 
-## Core Insight
+**The Challenge:** Smaller-scoped agents produce better code quality and manage token budgets more effectively. But running agents serially is slow.
 
-Git hooks determine worktree identity via **path pattern matching** (`/.docimp-wt/`), not fragile git metadata. This approach is robust, maintainable, and obvious: if the worktree path doesn't contain `/.docimp-wt/`, it's the main worktree. This simple check enables branch protection without relying on git configuration that can become inconsistent across worktrees.
+**The Solution:** Git worktrees enable parallel agent execution without merge conflicts. Each agent operates in its own isolated worktree, working on independent branches simultaneously.
 
-## Implementation
+**Real-World Impact:** This pattern has been tested with 7+ concurrent Claude Code instances running different tasks in parallel on the same codebase. The bottleneck shifts from execution time to task decomposition - can you break work into parallelizable chunks?
 
-### Pre-Commit Hook (Simplified)
+### Setup Approaches
+
+#### Greenfield Projects (Recommended)
+
+This repository demonstrates the clean approach - start with worktrees from day one:
 
 ```bash
-#!/bin/bash
-# Block commits on main branch in main worktree
-
-RED='\033[0;31m'
-YELLOW='\033[1;33m'
-NC='\033[0m'
-
-# Get current branch
-current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
-
-# Only check if we're on main branch
-if [ "$current_branch" != "main" ]; then
-    exit 0
-fi
-
-# Get the absolute path of the current worktree
-current_worktree=$(git rev-parse --show-toplevel)
-
-# Check if we're in the main worktree (not a feature worktree)
-if [[ ! "$current_worktree" =~ /.docimp-wt/ ]]; then
-    # We're in the main worktree - block the commit
-    echo ""
-    echo -e "${RED}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "${RED}✗ COMMIT BLOCKED${NC}"
-    echo -e "${RED}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo ""
-    echo -e "${YELLOW}Cannot commit on main branch in the main worktree.${NC}"
-    echo ""
-    echo "The main worktree is reserved for reference and worktree management."
-    echo "All development work should be done in feature worktrees."
-    echo ""
-    echo "If you need to bypass this check (for maintenance only):"
-    echo "  git commit --no-verify"
-    echo ""
-    exit 1
-fi
-
-# We're in a feature worktree - allow the commit
-exit 0
+# Repository structure
+parent-dir/
+├── .git/              # Shared git directory
+├── main/              # Main worktree (reference only)
+├── feature-1/         # Feature worktree
+└── feature-2/         # Feature worktree
 ```
 
-## Example Output
+**Benefits:**
+- Clean separation from the start
+- Main worktree protected by default
+- No migration complexity
 
+#### Retrofitting Existing Repositories
+
+If you have an existing repo, you can adopt worktrees incrementally:
+
+1. Keep your current directory as the main worktree
+2. Create feature worktrees alongside it
+3. Configure git hooks to protect main (see Pattern 5)
+4. Gradually shift development to feature worktrees
+
+**Trade-off:** May need shared configuration patterns (e.g., `.shared/` directory) to avoid git tracking conflicts. See DocImp case study for retrofit implementation details.
+
+### Automation: create_worktree.py
+
+The `create_worktree.py` script (798 lines, available in `actual-code/skills/git-workflow/scripts/`) automates the entire workflow:
+
+```bash
+python3 create_worktree.py feature-name branch-name
 ```
-$ git commit -m "Update README"
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✗ COMMIT BLOCKED
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+**What it handles:**
+- Validates source branch exists (local or remote)
+- Detects main branch location automatically
+- Creates isolated Python virtual environment per worktree
+- Sets up symlinks for shared configuration (when needed)
+- Coordinates git hooks across worktrees
+- Prompts for uncommitted changes handling
 
-Cannot commit on main branch in the main worktree.
-
-The main worktree is reserved for reference and worktree management.
-All development work should be done in feature worktrees.
-
-If you need to bypass this check (for maintenance only):
-  git commit --no-verify
+**CLI Options:**
+```bash
+--source-branch BRANCH        # Branch from (default: main)
+--include-changes none        # Don't bring uncommitted changes
+--include-changes uncommitted # Bring uncommitted only
+--include-changes unpushed    # Bring unpushed commits
+--include-changes all         # Bring everything
 ```
 
-## When to Use
+### Common Gotchas and Workarounds
 
-**Use this pattern when:**
-- You have a multi-worktree setup with a consistent path naming convention
-- You need to protect the main branch in a specific worktree (typically the main one)
-- You want educational error messages that guide developers to the correct workflow
+#### 1. Claude Ignores Worktree Automation
 
-**Don't use this pattern when:**
-- You have a single worktree workflow (standard git workflow)
-- Your worktree paths don't follow a predictable naming pattern
-- You need hooks that run identically across all worktrees
+**Problem:** Claude Code's training data overwhelmingly uses `git checkout` instead of `git worktree`, so it often ignores the create_worktree.py script.
 
-### Implementation
+**Workarounds:**
+- Add script to a `git-workflow` skill (forces Claude to see it in context)
+- Bundle script in skill's `scripts/` subdirectory
+- In prompts, explicitly say: "Use your `git-workflow` skill's `create_worktree.py` script"
 
-See `actual-code/create_worktree.py` (1066 lines) for complete automation.
-See `actual-code/hooks/` for hook implementations.
+#### 2. Claude Runs Script from Wrong Location
+
+**Problem:** Claude may try to execute the script from the `scripts/` directory, causing path resolution failures.
+
+**Workaround:**
+- Script detects execution context and fails gracefully with clear error messages
+- Advanced: Make script location-agnostic (auto-detect repo root)
+- Simple: Just correct Claude when this happens
+
+#### 3. Claude Invents CLI Flags
+
+**Problem:** Claude sees a script and imagines what flags might exist, triggering interactive mode. Claude struggles with interactive prompts and may try to manually replicate the script's logic (token-inefficient and error-prone).
+
+**Workarounds:**
+- Interrupt Claude and tell it to use `--help`
+- Create an `access-skill-resources` skill documenting how to use scripts with `--help`
+- In interactive mode, display: "This is interactive mode. If you meant CLI, use `--help` for flag syntax"
+- For simple setups: just go with interactive mode
+- Run script yourself before starting Claude
+
+#### 4. Claude Tries Checkout in Main Worktree
+
+**Problem:** Training data inertia - Claude defaults to `git checkout` in current directory.
+
+**Workaround:**
+- Git hooks auto-block commits on main branch (see Pattern 5)
+- Post-checkout hook auto-reverts branch changes in main worktree
+- Claude learns from hook error messages to use worktrees instead
+
+### Integration with Git Hooks
+
+Worktrees work best with protective git hooks (Pattern 5: Git Hooks for AI Safety). See `actual-code/hooks/` for implementation details.
 
 ---
 
-## Pattern 2: CLAUDE.md Context Management
+## Pattern 5: Git Hooks for AI Safety
+
+Protect the main branch from accidental commits when using agentic AI workflows. Git hooks (not Claude Code hooks) provide the final safety net.
+
+### Why This Matters for Agentic AI
+
+Claude Code's training data overwhelmingly shows `git checkout` workflows, not worktrees. Even with prompts and skills, Claude may occasionally try to commit to main or checkout branches in the main worktree. Git hooks auto-block these operations.
+
+### Two-Tier Hook Architecture
+
+**Source**: `actual-code/hooks/` → **Installed**: `.git/hooks/` (or via Husky)
+
+```
+User Action (git commit/checkout)
+    ↓
+Layer 1: Git Hooks (.git/hooks/)
+    ├─ pre-commit: Block commits on main in main worktree
+    └─ post-checkout: Auto-revert branch changes in main worktree
+    ↓
+Layer 2: Husky Hooks (.husky/) [optional]
+    ├─ Delegates to Git hooks
+    └─ Adds lint-staged integration
+```
+
+### Path-Based Detection
+
+**Core Insight**: Hooks identify worktree type via path pattern matching, not fragile git metadata.
+
+```bash
+# Check if we're in the main worktree
+current_worktree=$(git rev-parse --show-toplevel)
+
+if [[ ! "$current_worktree" =~ /.docimp-wt/ ]]; then
+    # Path doesn't contain worktree pattern → this is main → block commit
+    echo "✗ COMMIT BLOCKED: Cannot commit on main branch in main worktree"
+    exit 1
+fi
+```
+
+**Pattern**: `/.docimp-wt/` identifies feature worktrees. Adjust pattern for your naming convention.
+
+### Hook Implementations
+
+**pre-commit** (`actual-code/hooks/pre-commit`):
+- Blocks commits to main branch when in main worktree
+- Educational error messages guide users to create worktrees
+- Allows `--no-verify` bypass for maintenance
+
+**post-checkout** (`actual-code/hooks/post-checkout`):
+- Auto-reverts if you check out non-main branch in main worktree
+- Prevents accidental branch switching in reference worktree
+- Silent operation (no blocking messages needed)
+
+### Configuration
+
+Hooks read from `actual-code/hooks/config/.worktree-config`:
+
+```bash
+WORKTREE_PATTERN="/.docimp-wt/"
+CREATE_WORKTREE_SCRIPT="actual-code/create_worktree.py"
+```
+
+Adjust `WORKTREE_PATTERN` to match your directory naming (e.g., `/feature-/` or `/-wt/`).
+
+### Installation
+
+Git worktrees share the hooks directory, so install once:
+
+```bash
+# Copy hooks to shared git directory
+cp actual-code/hooks/pre-commit .git/hooks/
+cp actual-code/hooks/post-checkout .git/hooks/
+
+# Make executable
+chmod +x .git/hooks/*
+```
+
+All worktrees now protected automatically.
+
+### Integration with Husky (Optional)
+
+For npm projects, Husky provides additional tooling integration:
+
+```bash
+# .husky/pre-commit
+#!/bin/bash
+.git/hooks/pre-commit || exit 1  # Call Git hook first
+npx lint-staged                  # Then run lint-staged
+```
+
+See `actual-code/hooks/README.md` for complete two-tier architecture details.
+
+---
+
+## Pattern 6: Symlink Discovery Pattern
+
+Separate documentation (source of truth) from runtime discovery (what Claude Code sees). This enables version control flexibility and clear organization.
+
+### The Pattern
+
+**Source**: `actual-code/` contains all agents, skills, and configurations
+**Runtime**: `.claude/` contains symlinks that Claude Code discovers
+
+**Actual structure in this repo**:
+
+```
+.claude/
+├── agents/
+│   ├── code-reviewer.md -> ../../actual-code/agents/project/code-reviewer.md
+│   └── python-313-conventions.md -> ../../actual-code/agents/user/python-313-conventions.md
+├── skills/
+│   ├── access-skill-resources -> ../../actual-code/skills/user/access-skill-resources/
+│   ├── cli-ux-colorful -> ../../actual-code/skills/user/cli-ux-colorful/
+│   ├── dependency-management -> ../../actual-code/skills/user/dependency-management/
+│   ├── development-standards -> ../../actual-code/skills/user/development-standards/
+│   ├── exhaustive-testing -> ../../actual-code/skills/user/exhaustive-testing/
+│   ├── git-workflow -> ../../actual-code/skills/project/git-workflow/
+│   ├── handle-deprecation-warnings -> ../../actual-code/skills/user/handle-deprecation-warnings/
+│   └── skill-creator -> ../../actual-code/skills/official/skill-creator/
+└── settings.local.json (not symlinked - user-specific, gitignored)
+```
+
+**Key insight**:
+- **Agents**: Symlink individual `.md` files (agents are single files)
+- **Skills**: Symlink individual skill directories (skills can bundle scripts, references, assets)
+
+### Why This Works
+
+**Benefits**:
+1. **Single source of truth**: All content lives in `actual-code/`
+2. **Clear documentation**: `actual-code/` is obviously the canonical location
+3. **Fine-grained control**: Choose which agents/skills to activate per worktree
+4. **Version control friendly**: Commit `actual-code/`, gitignore `.claude/`
+5. **Easy discovery**: Claude Code automatically finds resources via `.claude/`
+
+### Setup
+
+```bash
+# Create individual agent file symlinks
+ln -s ../../actual-code/agents/project/code-reviewer.md .claude/agents/
+ln -s ../../actual-code/agents/user/python-313-conventions.md .claude/agents/
+
+# Create individual skill directory symlinks
+ln -s ../../actual-code/skills/user/access-skill-resources .claude/skills/
+ln -s ../../actual-code/skills/user/cli-ux-colorful .claude/skills/
+ln -s ../../actual-code/skills/user/dependency-management .claude/skills/
+ln -s ../../actual-code/skills/user/development-standards .claude/skills/
+ln -s ../../actual-code/skills/user/exhaustive-testing .claude/skills/
+ln -s ../../actual-code/skills/user/handle-deprecation-warnings .claude/skills/
+ln -s ../../actual-code/skills/project/git-workflow .claude/skills/
+ln -s ../../actual-code/skills/official/skill-creator .claude/skills/
+```
+
+### What to Version Control
+
+**.gitignore**:
+```
+.claude/           # Don't commit symlinks (user-specific)
+```
+
+**Do commit**:
+- `actual-code/agents/` - Agent definitions
+- `actual-code/skills/` - Skill definitions
+- `actual-code/hooks-config/` - Hook configuration templates
+
+**User creates locally**:
+- `.claude/agents/` symlinks - Individual agent files
+- `.claude/skills/` symlinks - Individual skill directories
+- `.claude/settings.local.json` - Copy and customize from template
+
+---
+
+## Pattern 7: CLAUDE.md Context Management
 
 Once worktrees are isolated, managing context becomes critical. Claude Code's 40KB limit on CLAUDE.md requires careful architecture to provide comprehensive documentation without hitting the ceiling.
 
@@ -326,7 +634,7 @@ See `claude-config/` directory for working examples.
 
 ---
 
-## Pattern 3: Direnv Tool Interception
+## Pattern 8: Direnv Tool Interception
 
 The final piece ensures workflow consistency across all worktrees by intercepting tool calls and enforcing project standards through PATH manipulation and educational error messages.
 
