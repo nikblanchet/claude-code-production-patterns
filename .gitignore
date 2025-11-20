@@ -43,3 +43,6 @@ build/
 
 # Project-specific configuration
 .worktree-config
+
+# Planning and analysis (not for public repo)
+.planning/

@@ -2,18 +2,28 @@
 
 Advanced integration patterns for Claude Code: hooks, agents, and skills that power sophisticated AI-assisted development workflows.
 
-## Overview
+## About This Repository
 
-This repository demonstrates **Scenario C: Claude Code Agents and Hooks - Advanced Integration Patterns**, covering:
+This repository serves as both **documentation and demonstration** of advanced Claude Code patterns. Rather than just describing concepts, it contains working implementations you can install and use immediately. Every pattern documented here is production-tested and ready for real-world use.
 
-- **Claude Code Hooks** - Event-driven workflow automation and permissions
-- **Custom Agents** - Autonomous subprocesses for complex multi-step tasks
-- **Skills** - Specialized knowledge and workflows for specific domains
-- **Git Integration** - Worktree orchestration and branch protection
+**What's Demonstrated**: This repository implements **Scenario C: Claude Code Agents and Hooks - Advanced Integration Patterns**, including:
+
+- **Claude Code Hooks** - Event-driven workflow automation and permission systems
+- **Custom Agents** - Autonomous subprocesses for complex multi-step tasks with fresh context
+- **Custom Skills** - Specialized knowledge modules with bundled resources
+- **Git Worktree Orchestration** - Parallel development without merge conflicts
+- **Git Hooks for AI Safety** - Branch protection and worktree isolation
+- **Symlink Discovery Pattern** - Separate documentation from runtime configuration
 
 All patterns extracted from production use in a large-scale polyglot codebase.
 
-**Background:** This repository was created in response to a technical documentation assignment. See [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md) for the original prompt and requirements that shaped this work.
+**Ongoing Development**: I found this exercise enlightening and have decided to continue expanding this repository both for my own edification (it's useful to have all my production patterns documented in one place) and for the general utility of others working with Claude Code at scale.
+
+**For Evaluators and Hiring Teams**: You can fork this repository and revert to commit `[initial-submission]` to see the state at the time of the original assignment submission. The repository continues to evolve with additional patterns and refinements based on production use.
+
+**Background**: This repository was created in response to a technical documentation assignment. See [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md) for the original prompt and requirements that shaped this work.
+
+**Learning Ground**: These patterns were refined through production use in [DocImp](https://github.com/yourusername/docimp), a 17,000+ line polyglot codebase (Python/TypeScript/JavaScript) that serves as an optional narrative accompaniment to this documentation. DocImp demonstrates these patterns in a real-world context, but this repository is self-contained and doesn't require DocImp knowledge to be useful.
 
 ## Repository Structure
 
@@ -202,8 +212,8 @@ Git Integration (quality gates)
 ## Advanced Topics
 
 For deeper implementation details and additional patterns, see:
-- [`ADVANCED_PATTERNS.md`](ADVANCED_PATTERNS.md) - Comprehensive pattern guide including worktree orchestration
-- [`SCENARIO_JUSTIFICATION.md`](SCENARIO_JUSTIFICATION.md) - Why Scenario C
+- [`ADVANCED_PATTERNS.md`](ADVANCED_PATTERNS.md) - Comprehensive pattern guide including symlink discovery, CLAUDE.md management, direnv integration, and worktree orchestration
+- [`PATTERNS_RATIONALE.md`](PATTERNS_RATIONALE.md) - Why these patterns and when to use them
 
 ## Development Setup
 

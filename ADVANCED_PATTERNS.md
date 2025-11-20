@@ -759,7 +759,7 @@ The physical file system layout of the DocImp repository, showing how worktrees,
 **Diagram**:
 
 ```
-/Users/nik/Documents/Code/Polygot/
+<project-root>/
 │
 ├── docimp/                                    # Main worktree
 │   ├── .git/                                  # Git repository
@@ -828,10 +828,10 @@ The physical file system layout of the DocImp repository, showing how worktrees,
 │   ├── issue-300/                           │
 │   └── ...                                  │
 │                                            │
-└── /Users/nik/Code/Polygot/docimp           │   # Alternate worktree path
+└── <alternate-path>/docimp                  │   # Alternate worktree path
                                              │
                                              │
-/Users/nik/Code/repos/custom-claude-skills/  │   # External skills repository
+<skills-repo>/                               │   # External skills repository
 └── project-scope/docimp/                    │
     └── git-workflow/ ───────────────────────┘   # Source of git-workflow skill
 ```
@@ -839,9 +839,9 @@ The physical file system layout of the DocImp repository, showing how worktrees,
 **Key Concepts**:
 
 **Worktree Structure**:
-- **Main worktree**: `/Users/nik/Documents/Code/Polygot/docimp/` - primary development location
+- **Main worktree**: `<project-root>/docimp/` - primary development location
 - **Additional worktrees**: `.docimp-wt/issue-*/` - parallel development on different branches
-- **Alternate path**: `/Users/nik/Code/Polygot/docimp` - same repo, different filesystem location
+- **Alternate path**: `<alternate-path>/docimp` - same repo, different filesystem location
 
 **Symlink Patterns**:
 - **CLAUDE.md**: Technical documentation for Claude Code (40k char limit) - symlinked to shared location
@@ -859,7 +859,7 @@ The physical file system layout of the DocImp repository, showing how worktrees,
 - **state/.git/**: Side-car Git repository for transaction tracking (never touches main `.git/`)
 
 **External Integrations**:
-- **git-workflow skill**: Symlinked from `/Users/nik/Code/repos/custom-claude-skills/project-scope/docimp/git-workflow`
+- **git-workflow skill**: Symlinked from `<skills-repo>/project-scope/docimp/git-workflow`
 - Provides standardized Git commands for worktree management, branch operations, PR creation
 
 **Benefits**:
