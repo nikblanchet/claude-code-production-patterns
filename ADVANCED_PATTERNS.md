@@ -480,68 +480,72 @@ Separate documentation (source of truth) from runtime discovery (what Claude Cod
 **Source**: `actual-code/` contains all agents, skills, and configurations
 **Runtime**: `.claude/` contains symlinks that Claude Code discovers
 
+**Actual structure in this repo**:
+
 ```
 .claude/
 ├── agents/
-│   ├── project -> ../../actual-code/agents/project
-│   └── user -> ../../actual-code/agents/user
+│   ├── code-reviewer.md -> ../../actual-code/agents/project/code-reviewer.md
+│   └── python-313-conventions.md -> ../../actual-code/agents/user/python-313-conventions.md
 ├── skills/
-│   ├── official -> ../../actual-code/skills/official
-│   ├── project -> ../../actual-code/skills/project
-│   └── user -> ../../actual-code/skills/user
-└── settings.local.json -> ../actual-code/hooks-config/settings.local.json
+│   ├── access-skill-resources -> ../../actual-code/skills/user/access-skill-resources/
+│   ├── cli-ux-colorful -> ../../actual-code/skills/user/cli-ux-colorful/
+│   ├── dependency-management -> ../../actual-code/skills/user/dependency-management/
+│   ├── development-standards -> ../../actual-code/skills/user/development-standards/
+│   ├── exhaustive-testing -> ../../actual-code/skills/user/exhaustive-testing/
+│   ├── git-workflow -> ../../actual-code/skills/project/git-workflow/
+│   ├── handle-deprecation-warnings -> ../../actual-code/skills/user/handle-deprecation-warnings/
+│   └── skill-creator -> ../../actual-code/skills/official/skill-creator/
+└── settings.local.json (not symlinked - user-specific, gitignored)
 ```
+
+**Key insight**:
+- **Agents**: Symlink individual `.md` files (agents are single files)
+- **Skills**: Symlink individual skill directories (skills can bundle scripts, references, assets)
 
 ### Why This Works
 
 **Benefits**:
 1. **Single source of truth**: All content lives in `actual-code/`
 2. **Clear documentation**: `actual-code/` is obviously the canonical location
-3. **Version control flexibility**: Can gitignore `.claude/` while committing `actual-code/`
-4. **Easy discovery**: Claude Code automatically finds resources via `.claude/`
-5. **Reusability**: Can share `actual-code/` across projects or keep project-specific
+3. **Fine-grained control**: Choose which agents/skills to activate per worktree
+4. **Version control friendly**: Commit `actual-code/`, gitignore `.claude/`
+5. **Easy discovery**: Claude Code automatically finds resources via `.claude/`
 
 ### Setup
 
 ```bash
-# Create symlinks for agents
-ln -s ../../actual-code/agents/project .claude/agents/project
-ln -s ../../actual-code/agents/user .claude/agents/user
+# Create individual agent file symlinks
+ln -s ../../actual-code/agents/project/code-reviewer.md .claude/agents/
+ln -s ../../actual-code/agents/user/python-313-conventions.md .claude/agents/
 
-# Create symlinks for skills
-ln -s ../../actual-code/skills/official .claude/skills/official
-ln -s ../../actual-code/skills/project .claude/skills/project
-ln -s ../../actual-code/skills/user .claude/skills/user
-
-# Create symlink for hooks config
-ln -s ../actual-code/hooks-config/settings.local.json .claude/settings.local.json
+# Create individual skill directory symlinks
+ln -s ../../actual-code/skills/user/access-skill-resources .claude/skills/
+ln -s ../../actual-code/skills/user/cli-ux-colorful .claude/skills/
+ln -s ../../actual-code/skills/user/dependency-management .claude/skills/
+ln -s ../../actual-code/skills/user/development-standards .claude/skills/
+ln -s ../../actual-code/skills/user/exhaustive-testing .claude/skills/
+ln -s ../../actual-code/skills/user/handle-deprecation-warnings .claude/skills/
+ln -s ../../actual-code/skills/project/git-workflow .claude/skills/
+ln -s ../../actual-code/skills/official/skill-creator .claude/skills/
 ```
 
 ### What to Version Control
 
 **.gitignore**:
 ```
-.claude/           # Don't commit symlinks (user-specific paths)
+.claude/           # Don't commit symlinks (user-specific)
 ```
 
 **Do commit**:
 - `actual-code/agents/` - Agent definitions
 - `actual-code/skills/` - Skill definitions
-- `actual-code/hooks-config/` - Hook templates (not the actual `.claude/settings.local.json`)
+- `actual-code/hooks-config/` - Hook configuration templates
 
-### Pattern Variations
-
-**Full symlink** (this repo):
-```bash
-.claude/skills/git-workflow -> ../../actual-code/skills/project/git-workflow/
-```
-
-**Directory-level symlink** (alternative):
-```bash
-.claude/skills -> ../actual-code/skills
-```
-
-Choose based on whether you want fine-grained control over what's visible to Claude Code.
+**User creates locally**:
+- `.claude/agents/` symlinks - Individual agent files
+- `.claude/skills/` symlinks - Individual skill directories
+- `.claude/settings.local.json` - Copy and customize from template
 
 ---
 
