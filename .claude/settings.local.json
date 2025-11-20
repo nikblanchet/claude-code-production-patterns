@@ -29,7 +29,11 @@
       "Bash(./actual-code/create_worktree.py:*)",
       "Bash(git worktree:*)",
       "Bash(git branch:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(/tmp/original-9314bc5c.md)",
+      "Bash(/tmp/original-c4274a18.md)",
+      "Bash(/tmp/original-9c455b3c.md)",
+      "Bash(/tmp/process.sh)"
     ],
     "deny": [
       "Bash(python:*)",
