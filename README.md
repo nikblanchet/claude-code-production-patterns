@@ -13,6 +13,8 @@ This repository demonstrates **Scenario C: Claude Code Agents and Hooks - Advanc
 
 All patterns extracted from production use in a 17,000+ line polyglot codebase.
 
+**Background:** This repository was created in response to a technical documentation assignment. See [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md) for the original prompt and requirements that shaped this work.
+
 ## Repository Structure
 
 ```
