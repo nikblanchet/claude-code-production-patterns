@@ -25,6 +25,18 @@ All patterns extracted from production use in a large-scale polyglot codebase.
 
 **Learning Ground**: These patterns were refined through production use in [DocImp](https://github.com/yourusername/docimp), a 17,000+ line polyglot codebase (Python/TypeScript/JavaScript) that serves as an optional narrative accompaniment to this documentation. DocImp demonstrates these patterns in a real-world context, but this repository is self-contained and doesn't require DocImp knowledge to be useful.
 
+## See It Working (Quick Start)
+
+Want to see these patterns in action right now?
+
+Follow **[examples/QUICKSTART.md](examples/QUICKSTART.md)** for 15-minute demonstrations of:
+- Git hooks protecting commits
+- Worktree creation and isolation
+- Skills and agents installation
+- Complete workflow validation
+
+Everything in this repo is functional and ready to use.
+
 ## Repository Structure
 
 ```
