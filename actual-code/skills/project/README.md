@@ -130,7 +130,7 @@ Follow the skill-creator guidance (see `../official/skill-creator/`) and conside
 
 ## Examples from Production Use
 
-The git-workflow skill was refined through managing large polyglot codebases with:
+The git-workflow skill emerged from managing a large-scale polyglot codebase with:
 - 4 parallel Claude Code instances in different worktrees
 - Shared code reviews and planning docs
 - Consistent workflow enforcement via hooks

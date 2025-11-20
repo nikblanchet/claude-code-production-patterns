@@ -70,10 +70,10 @@ DocImp uses **GitHub Actions** for continuous integration and deployment with **
 ```
 
 **What This Validates**:
-- ✅ ruff linting (8 rule groups: E, F, DTZ, UP, PTH, I, SIM, PERF, YTT)
-- ✅ ruff formatting (88-char line length, Python 3.13+ syntax)
-- ✅ mypy type checking (strict mode, warn on Any)
-- ✅ pytest tests (46+ test files, unit + integration coverage)
+- ✓ ruff linting (8 rule groups: E, F, DTZ, UP, PTH, I, SIM, PERF, YTT)
+- ✓ ruff formatting (88-char line length, Python 3.13+ syntax)
+- ✓ mypy type checking (strict mode, warn on Any)
+- ✓ pytest tests (46+ test files, unit + integration coverage)
 
 **Failure Conditions**:
 - Ruff linting violations (e.g., undefined names, PEP 8 violations)
@@ -140,13 +140,13 @@ DocImp uses **GitHub Actions** for continuous integration and deployment with **
 ```
 
 **What This Validates**:
-- ✅ ESLint linting (7 plugins: eslint, ts-eslint, jsdoc, unicorn, n, promise, import)
-- ✅ Prettier formatting (2-space, single quotes, LF line endings)
-- ✅ JSDoc linting (continue-on-error: warning only, not blocking)
-- ✅ TypeScript compilation (checkJs:true, strict mode, no emit)
-- ✅ Build success (TypeScript → JavaScript in `dist/`)
-- ✅ Jest unit tests (27+ test files)
-- ✅ Integration tests (TypeScript integration test suite)
+- ✓ ESLint linting (7 plugins: eslint, ts-eslint, jsdoc, unicorn, n, promise, import)
+- ✓ Prettier formatting (2-space, single quotes, LF line endings)
+- ✓ JSDoc linting (continue-on-error: warning only, not blocking)
+- ✓ TypeScript compilation (checkJs:true, strict mode, no emit)
+- ✓ Build success (TypeScript → JavaScript in `dist/`)
+- ✓ Jest unit tests (27+ test files)
+- ✓ Integration tests (TypeScript integration test suite)
 
 **Failure Conditions**:
 - ESLint violations (e.g., import ordering, unused vars, no-explicit-any)
@@ -191,11 +191,11 @@ DocImp uses **GitHub Actions** for continuous integration and deployment with **
 ```
 
 **What This Validates**:
-- ✅ TypeScript CLI entry point (`dist/index.js`)
-- ✅ Python subprocess spawning (`PythonBridge`)
-- ✅ Analyzer execution on example codebase
-- ✅ JSON output generation (redirected to `/dev/null`, validates format)
-- ✅ Complete data flow: CLI → Python → parsers → impact scorer → JSON
+- ✓ TypeScript CLI entry point (`dist/index.js`)
+- ✓ Python subprocess spawning (`PythonBridge`)
+- ✓ Analyzer execution on example codebase
+- ✓ JSON output generation (redirected to `/dev/null`, validates format)
+- ✓ Complete data flow: CLI → Python → parsers → impact scorer → JSON
 
 **Failure Conditions**:
 - CLI crashes (exit code ≠ 0)
@@ -254,9 +254,9 @@ DocImp uses **GitHub Actions** for continuous integration and deployment with **
 ```
 
 **What This Validates**:
-- ✅ TypeScript parser detects `export`/`import` keywords (ESM)
-- ✅ TypeScript parser detects `module.exports`/`require` (CommonJS)
-- ✅ CodeItem objects have correct `module_system` field (`'esm'` or `'commonjs'`)
+- ✓ TypeScript parser detects `export`/`import` keywords (ESM)
+- ✓ TypeScript parser detects `module.exports`/`require` (CommonJS)
+- ✓ CodeItem objects have correct `module_system` field (`'esm'` or `'commonjs'`)
 
 **Failure Conditions**:
 - Parser fails to parse test files
@@ -309,10 +309,10 @@ DocImp uses **GitHub Actions** for continuous integration and deployment with **
 10. Cleans up temporary files
 
 **What This Validates**:
-- ✅ Complete documented workflow: analyze → audit → plan → improve
-- ✅ JSON schema correctness (validated with jq)
-- ✅ Session state management
-- ✅ Non-interactive mode (for CI/CD use cases)
+- ✓ Complete documented workflow: analyze → audit → plan → improve
+- ✓ JSON schema correctness (validated with jq)
+- ✓ Session state management
+- ✓ Non-interactive mode (for CI/CD use cases)
 
 **Failure Conditions**:
 - Any command exits with non-zero code
@@ -437,15 +437,15 @@ Total: ~3 minutes (fail fast)
 ## Pull Request Protection Rules
 
 **Branch Protection** (configured on GitHub):
-- ✅ Require status checks to pass before merging
-- ✅ Required checks:
+- ✓ Require status checks to pass before merging
+- ✓ Required checks:
   - `python-tests`
   - `typescript-tests`
   - `integration-test`
   - `module-system-matrix`
   - `workflow-validation`
-- ✅ Require branches to be up to date before merging
-- ✅ Require linear history (squash merge)
+- ✓ Require branches to be up to date before merging
+- ✓ Require linear history (squash merge)
 
 **Effect**: PRs cannot be merged unless all 5 jobs pass
 
@@ -641,19 +641,19 @@ for item in items:
 - **Total time**: ~5 minutes (all tests pass), ~3 minutes (fail fast)
 
 **Quality Gates**:
-- ✅ Python: ruff (lint + format), mypy (types), pytest (46+ tests)
-- ✅ TypeScript: ESLint (lint), Prettier (format), tsc (types), Jest (27+ tests)
-- ✅ Integration: End-to-end CLI → analyzer → JSON output
-- ✅ Module systems: ESM and CommonJS detection
-- ✅ Workflows: analyze → audit → plan → improve validation
+- ✓ Python: ruff (lint + format), mypy (types), pytest (46+ tests)
+- ✓ TypeScript: ESLint (lint), Prettier (format), tsc (types), Jest (27+ tests)
+- ✓ Integration: End-to-end CLI → analyzer → JSON output
+- ✓ Module systems: ESM and CommonJS detection
+- ✓ Workflows: analyze → audit → plan → improve validation
 
 **Caching**:
-- ✅ npm cache (based on package-lock.json)
-- ✅ uv cache (Python packages)
+- ✓ npm cache (based on package-lock.json)
+- ✓ uv cache (Python packages)
 
 **Pull Request Protection**:
-- ✅ All 5 jobs must pass before merge
-- ✅ Branches must be up to date
-- ✅ Squash merge required (linear history)
+- ✓ All 5 jobs must pass before merge
+- ✓ Branches must be up to date
+- ✓ Squash merge required (linear history)
 
 **Next Steps**: See `INFRASTRUCTURE-DOCS_6-Direnv-Integration.md` for tool interception and environment management.

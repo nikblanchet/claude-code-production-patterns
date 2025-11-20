@@ -15,6 +15,8 @@ This repository serves as both **documentation and demonstration** of advanced C
 - **Git Hooks for AI Safety** - Branch protection and worktree isolation
 - **Symlink Discovery Pattern** - Separate documentation from runtime configuration
 
+All patterns extracted from production use in a large-scale polyglot codebase.
+
 **Ongoing Development**: I found this exercise enlightening and have decided to continue expanding this repository both for my own edification (it's useful to have all my production patterns documented in one place) and for the general utility of others working with Claude Code at scale.
 
 **For Evaluators and Hiring Teams**: You can fork this repository and revert to commit `[initial-submission]` to see the state at the time of the original assignment submission. The repository continues to evolve with additional patterns and refinements based on production use.
@@ -210,9 +212,8 @@ Git Integration (quality gates)
 ## Advanced Topics
 
 For deeper implementation details and additional patterns, see:
-- [`ADVANCED_PATTERNS.md`](ADVANCED_PATTERNS.md) - Comprehensive pattern guide including symlink discovery, CLAUDE.md management, and direnv integration
+- [`ADVANCED_PATTERNS.md`](ADVANCED_PATTERNS.md) - Comprehensive pattern guide including symlink discovery, CLAUDE.md management, direnv integration, and worktree orchestration
 - [`PATTERNS_RATIONALE.md`](PATTERNS_RATIONALE.md) - Why these patterns and when to use them
-- [`WORKTREE_PATTERN.md`](WORKTREE_PATTERN.md) - Worktree orchestration details
 
 ## Development Setup
 

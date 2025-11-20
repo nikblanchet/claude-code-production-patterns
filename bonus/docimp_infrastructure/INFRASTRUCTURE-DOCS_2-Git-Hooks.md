@@ -688,10 +688,10 @@ git commit --no-verify -m "Emergency fix: update CI config"
 - `cli/package.json` (lint-staged config) - Auto-formats/lints staged files
 
 **Workflow Protection**:
-- ✅ Main branch protected in main worktree (can't commit or checkout)
-- ✅ Feature branches unrestricted in feature worktrees
-- ✅ Lint-staged auto-fixes quality issues before commit
-- ✅ Educational error messages guide developers
-- ✅ Escape hatch available for legitimate maintenance
+- ✓ Main branch protected in main worktree (can't commit or checkout)
+- ✓ Feature branches unrestricted in feature worktrees
+- ✓ Lint-staged auto-fixes quality issues before commit
+- ✓ Educational error messages guide developers
+- ✓ Escape hatch available for legitimate maintenance
 
 **Next Steps**: See `INFRASTRUCTURE-DOCS_3-Claude-Code-Config.md` for Claude Code permission configuration.

@@ -693,15 +693,15 @@ source ~/.bashrc
 - **Subdirectory warnings**: Prevents accidental `.venv/` creation
 
 **Enforcement**:
-- ✅ 100% `uv run` compliance (transparent redirection)
-- ✅ `pip` blocked with educational error
-- ✅ Per-worktree isolation (separate `.direnv/` and `.venv/`)
-- ✅ Dual enforcement: direnv (local) + Claude Code permissions (AI)
+- ✓ 100% `uv run` compliance (transparent redirection)
+- ✓ `pip` blocked with educational error
+- ✓ Per-worktree isolation (separate `.direnv/` and `.venv/`)
+- ✓ Dual enforcement: direnv (local) + Claude Code permissions (AI)
 
 **Benefits**:
-- ✅ Zero manual workflow compliance
-- ✅ Parallel development (no lock contention)
-- ✅ Automatic environment management
-- ✅ Educational error messages
+- ✓ Zero manual workflow compliance
+- ✓ Parallel development (no lock contention)
+- ✓ Automatic environment management
+- ✓ Educational error messages
 
 **Next Steps**: See `../INFRASTRUCTURE_BEST_EXAMPLES.md` for in-depth exploration of the 3 most impressive infrastructure components (Git Hooks, Claude Code Config, direnv).
