@@ -1,6 +1,6 @@
 # Git Hooks: Worktree Protection Pattern
 
-This directory contains the actual Git hook implementations from the docimp project, demonstrating a two-tier hook architecture for worktree-based development workflows.
+This directory contains Git hook implementations demonstrating a two-tier hook architecture for worktree-based development workflows.
 
 ## Architecture Overview
 
@@ -32,7 +32,7 @@ User Action (git commit/checkout)
 
 **`pre-commit`**
 - Blocks commits on main branch when in main worktree
-- Uses path pattern matching: `/.docimp-wt/` identifies feature worktrees
+- Uses configurable path pattern matching (set in `.worktree-config`)
 - Provides educational error message with worktree creation instructions
 - Bypass: `git commit --no-verify`
 
@@ -74,15 +74,20 @@ Two-layer enforcement:
 
 ### Path Pattern Detection
 
+The pattern is configurable via `.worktree-config`:
+
 ```bash
 current_worktree=$(git rev-parse --show-toplevel)
 
-# Feature worktrees: /path/to/.docimp-wt/issue-260/
-# Main worktree: /path/to/docimp/
-if [[ ! "$current_worktree" =~ /.docimp-wt/ ]]; then
+# Example: Feature worktrees in /path/to/project-wt/issue-260/
+# Main worktree in /path/to/project/
+# Configure WORKTREE_PATTERN to match your naming convention
+if [[ ! "$current_worktree" =~ $WORKTREE_PATTERN ]]; then
     # We're in main worktree - block the action
 fi
 ```
+
+See `CONFIGURATION.md` for pattern configuration details.
 
 ### Error Message Design
 
@@ -200,7 +205,7 @@ git checkout main                      # Auto-revert in post-checkout
 
 ## Notes
 
-- **No pre-push hook**: The docimp project only uses pre-commit and post-checkout hooks
+- **No pre-push hook**: This pattern uses pre-commit and post-checkout hooks only
 - **Bypass available**: `--no-verify` flag allows maintenance commits when needed
-- **Worktree-aware**: Detection based on path pattern, works across all worktrees
+- **Worktree-aware**: Detection based on configurable path pattern, works across all worktrees
 - **Color support**: ANSI color codes work in most modern terminals

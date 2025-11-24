@@ -48,6 +48,12 @@ These patterns solve a critical challenge in AI-assisted development: **how to r
 
 ---
 
+> **About Examples in This Guide**
+>
+> Code examples use "DocImp" (a production polyglot codebase) as a concrete case study. DocImp demonstrates retrofit patterns - adding worktrees to an existing repository. For guidance on adapting these patterns to your project, including the simpler greenfield approach, see **[GREENFIELD_NOTES.md](GREENFIELD_NOTES.md)**.
+
+---
+
 ## Why These Patterns Matter
 
 **The Parallel Agent Problem:**
@@ -304,7 +310,7 @@ If you have an existing repo, you can adopt worktrees incrementally:
 3. Configure git hooks to protect main (see Pattern 5)
 4. Gradually shift development to feature worktrees
 
-**Trade-off:** May need shared configuration patterns (e.g., `.shared/` directory) to avoid git tracking conflicts. See DocImp case study for retrofit implementation details.
+**Trade-off:** May need shared configuration patterns (e.g., `.shared/` directory) to avoid git tracking conflicts. See [GREENFIELD_NOTES.md](GREENFIELD_NOTES.md) for retrofit examples including the DocImp case study.
 
 ### Automation: create_worktree.py
 
@@ -569,9 +575,11 @@ wc -c CLAUDE.md
 
 ## The External Import Pattern
 
-**Problem**: DocImp has complex architecture requiring extensive documentation. Inline documentation would exceed 40KB.
+**Problem**: Complex projects often require extensive documentation that would exceed 40KB.
 
 **Solution**: Use `@docs/patterns/*.md` imports for detailed explanations.
+
+> **Example**: The DocImp project uses this pattern to document its multi-language architecture. The commands shown below (`docimp analyze`, etc.) are DocImp-specific - substitute your project's commands.
 
 ## CLAUDE.md Structure with Imports
 
@@ -751,7 +759,14 @@ See `direnv/.envrc` for working example.
 
 ## Visual Architecture
 
-# Repository Worktree and Symlink Structure
+> **Case Study: DocImp Retrofit Structure**
+>
+> The following diagram shows DocImp's specific retrofit implementation. This is ONE approach - for generic patterns and the simpler greenfield approach, see:
+> - `diagrams/greenfield-worktree-structure.md` (recommended for new projects)
+> - `diagrams/retrofit-worktree-structure.md` (generic retrofit patterns)
+> - `GREENFIELD_NOTES.md` (comprehensive comparison)
+
+### DocImp Repository Structure
 
 **What it Represents**:
 The physical file system layout of the DocImp repository, showing how worktrees, symlinks, and shared configuration enable multi-branch development with consistent Claude Code settings.
