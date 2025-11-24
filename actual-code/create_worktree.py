@@ -171,13 +171,28 @@ def validate_project_repo() -> None:
     Raises:
         SystemExit: If not in a git repository or pyproject.toml missing
     """
-    if not Path(".git").is_dir() and not Path(".git").is_file():
+    # Check for git repository: worktrees have .git file, normal repos have .git dir,
+    # bare repos have HEAD, refs/, and objects/ directories
+    is_git_repo = (
+        Path(".git").is_dir()
+        or Path(".git").is_file()
+        or (
+            Path("HEAD").is_file()
+            and Path("refs").is_dir()
+            and Path("objects").is_dir()
+        )
+    )
+    if not is_git_repo:
         exit_with_error(
             "Not in a git repository\n"
             "Please run this script from the repository root directory"
         )
 
-    if not Path("pyproject.toml").exists():
+    # Check for pyproject.toml - warning only for bare repos
+    # (bare repos don't have pyproject.toml but worktrees do)
+    if not Path("pyproject.toml").exists() and not (
+        Path("HEAD").is_file() and Path("refs").is_dir()
+    ):
         print_warning("Warning: pyproject.toml not found in current directory")
         print("This script expects a Python project with pyproject.toml")
         response = input("Continue anyway? (y/N) ").strip().lower()

@@ -160,7 +160,7 @@ console = Console(force_terminal=not os.environ.get('NO_COLOR'))
 
 **Analysis results with colors:**
 ```bash
-$ docimp analyze ./src
+$ tool analyze ./src
 
 ┌─ Documentation Analysis ──────────────────────────┐
 │ Total functions: 42                               │

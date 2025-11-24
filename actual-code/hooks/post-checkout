@@ -45,8 +45,14 @@ if [ -z "$WORKTREE_PATTERN" ]; then
     if [[ "$current_worktree" =~ -wt- ]]; then
         WORKTREE_PATTERN="-wt-"
     else
-        # Default pattern for this project
-        WORKTREE_PATTERN="/.docimp-wt/"
+        echo ""
+        echo -e "${RED}Error: WORKTREE_PATTERN not set and could not auto-detect${NC}"
+        echo ""
+        echo "Please create .worktree-config from .worktree-config.template:"
+        echo "  cp .worktree-config.template .worktree-config"
+        echo "  # Edit .worktree-config with your project-specific pattern"
+        echo ""
+        exit 1
     fi
 fi
 
@@ -67,7 +73,7 @@ if [[ ! "$current_worktree" =~ $WORKTREE_PATTERN ]]; then
     echo "  python3 $CREATE_WORKTREE_SCRIPT <worktree-name> <branch-name>"
     echo ""
     echo "Example:"
-    echo "  python3 $CREATE_WORKTREE_SCRIPT issue-260 issue-260-fix-bug"
+    echo "  python3 $CREATE_WORKTREE_SCRIPT feature-x feature-x-implementation"
     echo ""
     echo -e "${YELLOW}Automatically reverting to main branch...${NC}"
     echo ""

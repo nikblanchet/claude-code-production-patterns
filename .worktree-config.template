@@ -13,11 +13,13 @@
 # Feature worktrees should contain this pattern in their absolute path
 # Main worktree should NOT contain this pattern
 #
-# Examples:
-#   WORKTREE_PATTERN="/.myproject-wt/"   # For worktrees like /path/to/myproject-wt-feature/
-#   WORKTREE_PATTERN="-wt-"              # For worktrees like /path/to/project-wt-feature/
-#   WORKTREE_PATTERN="/worktrees/"       # For worktrees in /path/to/worktrees/feature/
-WORKTREE_PATTERN="/.docimp-wt/"
+# For bare repos with worktrees as subfolders (main/, feature-x/, etc.):
+#   WORKTREE_PATTERN="/"              # Matches any subfolder except bare repo root
+#
+# For other structures:
+#   WORKTREE_PATTERN="-wt-"           # For worktrees like /path/to/project-wt-feature/
+#   WORKTREE_PATTERN="/worktrees/"    # For worktrees in /path/to/worktrees/feature/
+WORKTREE_PATTERN="/"
 
 # PROJECT_ROOT: Optional. The root directory of your main worktree
 # If not set, hooks will auto-detect using git rev-parse --show-toplevel
