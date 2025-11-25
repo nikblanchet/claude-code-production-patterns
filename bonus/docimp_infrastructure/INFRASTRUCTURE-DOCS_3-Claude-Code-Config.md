@@ -15,7 +15,7 @@ DocImp's Claude Code configuration uses a **multi-layered architecture** to mana
 
 ### File Location
 
-**File**: `/Users/nik/Code/Polygot/.docimp-shared/.claude/settings.local.json`
+**File**: `/Users/nik/Code/Polyglot/.docimp-shared/.claude/settings.local.json`
 
 **Shared via symlinks**:
 ```
@@ -141,8 +141,8 @@ docimp/.claude/settings.local.json               → .docimp-shared/.claude/sett
 
 **Extended directories**:
 ```json
-"Read(//Users/nik/Documents/Code/Polygot/.docimp-shared/**)",
-"Read(//Users/nik/Documents/Code/Polygot/.docimp-wt/**)",
+"Read(//Users/nik/Documents/Code/Polyglot/.docimp-shared/**)",
+"Read(//Users/nik/Documents/Code/Polyglot/.docimp-wt/**)",
 "Read(//Users/nik/Code/repos/custom-claude-skills/**)",
 "Read(//private/tmp/**)"
 ```
@@ -331,14 +331,14 @@ create_symlink('../../../.docimp-shared/.claude/settings.local.json', claude_dir
 **Example**:
 ```bash
 # Update CLAUDE.md in .docimp-shared/
-cd /Users/nik/Code/Polygot/.docimp-shared
+cd /Users/nik/Code/Polyglot/.docimp-shared
 vim CLAUDE.md  # Add new command documentation
 
 # Automatically visible in all worktrees
-cd /Users/nik/Code/Polygot/docimp
+cd /Users/nik/Code/Polyglot/docimp
 cat CLAUDE.md  # Shows updated content (via symlink)
 
-cd /Users/nik/Documents/Code/Polygot/.docimp-wt/issue-260
+cd /Users/nik/Documents/Code/Polyglot/.docimp-wt/issue-260
 cat CLAUDE.md  # Shows updated content (via symlink)
 ```
 
@@ -486,7 +486,7 @@ wc -c CLAUDE.md
 
 ### File Location
 
-**File**: `/Users/nik/Code/Polygot/.docimp-shared/CLAUDE_CONTEXT.md`
+**File**: `/Users/nik/Code/Polyglot/.docimp-shared/CLAUDE_CONTEXT.md`
 
 **Status**: **Gitignored** (not committed to public repository)
 

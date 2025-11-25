@@ -430,7 +430,7 @@ $ cd /path/to/.docimp-wt/issue-260/
 
 **Step 2: direnv Loads `.envrc`**
 ```bash
-direnv: loading ~/Documents/Code/Polygot/docimp/.envrc
+direnv: loading ~/Documents/Code/Polyglot/docimp/.envrc
 ```
 
 **Step 3: .envrc Executes**

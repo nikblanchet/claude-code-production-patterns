@@ -27,7 +27,7 @@ DocImp enforces **polyglot quality standards** across Python, TypeScript, and Ja
 
 ### Configuration Files
 
-**Root-level**: `/Users/nik/Documents/Code/Polygot/docimp/ruff.toml`
+**Root-level**: `/Users/nik/Documents/Code/Polyglot/docimp/ruff.toml`
 ```toml
 exclude = [
   "test-samples/malformed",
@@ -37,7 +37,7 @@ exclude = [
 ]
 ```
 
-**Analyzer-level**: `/Users/nik/Documents/Code/Polygot/docimp/analyzer/pyproject.toml`
+**Analyzer-level**: `/Users/nik/Documents/Code/Polyglot/docimp/analyzer/pyproject.toml`
 ```toml
 [tool.ruff]
 target-version = "py313"

@@ -26,7 +26,7 @@ DocImp uses **uv** (Astral's ultra-fast Python package manager) as the exclusive
 #### File Locations
 
 ```
-/Users/nik/Documents/Code/Polygot/docimp/
+/Users/nik/Documents/Code/Polyglot/docimp/
 ├── pyproject.toml              # Project metadata, dependencies
 ├── uv.lock                     # uv's native lockfile (cross-platform)
 ├── requirements.lock           # Locked runtime dependencies
@@ -299,7 +299,7 @@ DocImp uses **git worktrees** for parallel feature development. Each worktree ma
 **Directory Structure:**
 
 ```
-/Users/nik/Documents/Code/Polygot/
+/Users/nik/Documents/Code/Polyglot/
 ├── docimp/                     # Main worktree
 │   ├── .venv/                  # Main environment
 │   ├── pyproject.toml
@@ -360,7 +360,7 @@ def setup_python_environment(worktree_path: Path) -> None:
 
 ```bash
 # From feature worktree (e.g., .docimp-wt/issue-243/)
-cd /Users/nik/Documents/Code/Polygot/.docimp-wt/issue-243/
+cd /Users/nik/Documents/Code/Polyglot/.docimp-wt/issue-243/
 
 # 1. Check if lock files changed (symlink targets updated)
 git status
@@ -381,7 +381,7 @@ uv run pytest -v
 
 ```bash
 # If environment gets corrupted or has orphaned packages
-cd /Users/nik/Documents/Code/Polygot/.docimp-wt/issue-243/
+cd /Users/nik/Documents/Code/Polyglot/.docimp-wt/issue-243/
 
 # 1. Remove old environment
 rm -rf .venv/
@@ -406,7 +406,7 @@ DocImp's TypeScript CLI uses **npm** with `package-lock.json` for deterministic 
 #### File Locations
 
 ```
-/Users/nik/Documents/Code/Polygot/docimp/cli/
+/Users/nik/Documents/Code/Polyglot/docimp/cli/
 ├── package.json          # Project metadata, dependencies, scripts
 ├── package-lock.json     # Locked dependency tree (commit this)
 └── node_modules/         # Installed packages (gitignored)
@@ -504,7 +504,7 @@ DocImp CLI dependencies organized by category:
 
 ```bash
 # From repository root
-cd /Users/nik/Documents/Code/Polygot/docimp/cli
+cd /Users/nik/Documents/Code/Polyglot/docimp/cli
 
 # 1. Install exact versions from lockfile
 npm ci
@@ -643,7 +643,7 @@ git commit -m "Remove axios dependency (no longer needed)"
 **Directory Structure:**
 
 ```
-/Users/nik/Documents/Code/Polygot/
+/Users/nik/Documents/Code/Polyglot/
 ├── docimp/                     # Main worktree
 │   └── cli/
 │       ├── node_modules/       # Physical directory
@@ -697,7 +697,7 @@ def setup_node_environment(worktree_path: Path, main_repo_path: Path) -> None:
 
 ```bash
 # From feature worktree
-cd /Users/nik/Documents/Code/Polygot/.docimp-wt/issue-243/cli
+cd /Users/nik/Documents/Code/Polyglot/.docimp-wt/issue-243/cli
 
 # 1. Break symlink to package.json
 rm package.json
@@ -727,7 +727,7 @@ ln -s ../../../docimp/cli/node_modules node_modules
 
 ```bash
 # Switch to main worktree
-cd /Users/nik/Documents/Code/Polygot/docimp/cli
+cd /Users/nik/Documents/Code/Polyglot/docimp/cli
 
 # Add dependency to main
 npm install new-package
@@ -738,7 +738,7 @@ git commit -m "Add new-package for feature X"
 git push origin main
 
 # Return to feature worktree (auto-updated via symlinks)
-cd /Users/nik/Documents/Code/Polygot/.docimp-wt/issue-243/cli
+cd /Users/nik/Documents/Code/Polyglot/.docimp-wt/issue-243/cli
 npm list new-package
 # Output: new-package@1.0.0
 ```
@@ -1133,13 +1133,13 @@ Before merging PRs:
 
 | File                     | Location                                                   | Purpose                       |
 |--------------------------|------------------------------------------------------------|-------------------------------|
-| `pyproject.toml`         | `/Users/nik/Documents/Code/Polygot/docimp/`                | Python project metadata       |
-| `uv.lock`                | `/Users/nik/Documents/Code/Polygot/docimp/`                | uv native lock file           |
-| `requirements.lock`      | `/Users/nik/Documents/Code/Polygot/docimp/`                | Python runtime deps           |
-| `requirements-dev.lock`  | `/Users/nik/Documents/Code/Polygot/docimp/`                | Python dev deps               |
-| `package.json`           | `/Users/nik/Documents/Code/Polygot/docimp/cli/`            | Node.js project metadata      |
-| `package-lock.json`      | `/Users/nik/Documents/Code/Polygot/docimp/cli/`            | npm lock file                 |
-| `node_modules/`          | `/Users/nik/Documents/Code/Polygot/docimp/cli/` (gitignored) | Installed Node.js packages |
+| `pyproject.toml`         | `/Users/nik/Documents/Code/Polyglot/docimp/`                | Python project metadata       |
+| `uv.lock`                | `/Users/nik/Documents/Code/Polyglot/docimp/`                | uv native lock file           |
+| `requirements.lock`      | `/Users/nik/Documents/Code/Polyglot/docimp/`                | Python runtime deps           |
+| `requirements-dev.lock`  | `/Users/nik/Documents/Code/Polyglot/docimp/`                | Python dev deps               |
+| `package.json`           | `/Users/nik/Documents/Code/Polyglot/docimp/cli/`            | Node.js project metadata      |
+| `package-lock.json`      | `/Users/nik/Documents/Code/Polyglot/docimp/cli/`            | npm lock file                 |
+| `node_modules/`          | `/Users/nik/Documents/Code/Polyglot/docimp/cli/` (gitignored) | Installed Node.js packages |
 
 ---
 

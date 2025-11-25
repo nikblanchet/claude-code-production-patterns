@@ -142,7 +142,7 @@ Input: {
 🔧 Using tool: Task
 Input: {
   "description": "Read and extract git hooks pattern",
-  "prompt": "Read the file at ~/Code/Polygot/docimp/.planning/INFRASTRUCTURE-DOCS_2-Git-Hooks.md\n\nExtract these specific elements:\n\n1. **Core Insight** (2-3 sentences): How path-based detection works with `/.docimp-wt/` and why this approach is robust\n\n2. **Pre-commit Hook Code** (lines ~35-60): Just the essential logic including:\n   - Path detection check\n   - One example error message block\n\n3. **Concrete Example**: The \"COMMIT BLOCKED\" output example\n\n4. **When to Use** (3 bullets):\n   - \u2705 Use when...\n   - \u274c Don't use when...\n\nSKIP entirely:\n- Post-checkout hook details\n- Husky dispatcher mechanics\n- Lint-staged configuration\n- All troubleshooting steps\n- All testing scenarios\n- Per-worktree config.worktree details\n\nReturn the extracted content in a format ready to be assembled into:\n1. A pattern documentation section (max 400 words)\n2. A 5-line installation README\n\nBe thorough in reading the file and extract all the relevant pieces.",
+  "prompt": "Read the file at ~/Code/Polyglot/docimp/.planning/INFRASTRUCTURE-DOCS_2-Git-Hooks.md\n\nExtract these specific elements:\n\n1. **Core Insight** (2-3 sentences): How path-based detection works with `/.docimp-wt/` and why this approach is robust\n\n2. **Pre-commit Hook Code** (lines ~35-60): Just the essential logic including:\n   - Path detection check\n   - One example error message block\n\n3. **Concrete Example**: The \"COMMIT BLOCKED\" output example\n\n4. **When to Use** (3 bullets):\n   - \u2705 Use when...\n   - \u274c Don't use when...\n\nSKIP entirely:\n- Post-checkout hook details\n- Husky dispatcher mechanics\n- Lint-staged configuration\n- All troubleshooting steps\n- All testing scenarios\n- Per-worktree config.worktree details\n\nReturn the extracted content in a format ready to be assembled into:\n1. A pattern documentation section (max 400 words)\n2. A 5-line installation README\n\nBe thorough in reading the file and extract all the relevant pieces.",
   "subagent_type": "Plan",
   "model": "haiku"
 }
@@ -161,7 +161,7 @@ Let me try to read the file directly:
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Code/Polygot/docimp/.planning/INFRASTRUCTURE-DOCS_2-Git-Hooks.md"
+  "file_path": "/Users/nik/Code/Polyglot/docimp/.planning/INFRASTRUCTURE-DOCS_2-Git-Hooks.md"
 }
 
 
