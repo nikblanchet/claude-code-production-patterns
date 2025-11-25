@@ -591,7 +591,7 @@ git config --worktree core.hooksPath "$(git rev-parse --show-toplevel)/.husky/_"
 ```bash
 git config --worktree --list
 # Should include:
-# core.hookspath=/Users/nik/Documents/Code/Polygot/.docimp-wt/issue-221/.husky/_
+# core.hookspath=/Users/nik/Documents/Code/Polyglot/.docimp-wt/issue-221/.husky/_
 ```
 
 ---

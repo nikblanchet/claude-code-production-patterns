@@ -16,7 +16,7 @@ I'll search for pre-commit and pre-push hook files in the docimp repository. Let
 
 🔧 Using tool: Bash
 Input: {
-  "command": "ls -la /Users/nik/Documents/Code/Polygot/docimp/.git/hooks/",
+  "command": "ls -la /Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/",
   "description": "List git hooks directory contents"
 }
 
@@ -28,7 +28,7 @@ Input: {
 
 🔧 Using tool: Bash
 Input: {
-  "command": "ls -la /Users/nik/Documents/Code/Polygot/docimp/ | grep -E \"^d.*hooks\"",
+  "command": "ls -la /Users/nik/Documents/Code/Polyglot/docimp/ | grep -E \"^d.*hooks\"",
   "description": "Check for custom hooks directory"
 }
 
@@ -41,7 +41,7 @@ Input: {
 🔧 Using tool: Glob
 Input: {
   "pattern": "**/pre-commit",
-  "path": "/Users/nik/Documents/Code/Polygot/docimp"
+  "path": "/Users/nik/Documents/Code/Polyglot/docimp"
 }
 
 
@@ -53,7 +53,7 @@ Input: {
 🔧 Using tool: Glob
 Input: {
   "pattern": "**/pre-push",
-  "path": "/Users/nik/Documents/Code/Polygot/docimp"
+  "path": "/Users/nik/Documents/Code/Polyglot/docimp"
 }
 
 
@@ -70,7 +70,7 @@ Good! I found a pre-commit hook that appears to be an actual implementation (not
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/.git/hooks/pre-commit"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/pre-commit"
 }
 
 
@@ -81,7 +81,7 @@ Input: {
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/.git/hooks/post-checkout"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/post-checkout"
 }
 
 
@@ -92,7 +92,7 @@ Input: {
 
 🔧 Using tool: Bash
 Input: {
-  "command": "ls -la /Users/nik/Documents/Code/Polygot/docimp/--help/_/",
+  "command": "ls -la /Users/nik/Documents/Code/Polyglot/docimp/--help/_/",
   "description": "Check unusual directory found by glob"
 }
 
@@ -104,7 +104,7 @@ Input: {
 
 🔧 Using tool: Bash
 Input: {
-  "command": "file /Users/nik/Documents/Code/Polygot/docimp/.git/hooks/pre-commit /Users/nik/Documents/Code/Polygot/docimp/.git/hooks/post-checkout",
+  "command": "file /Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/pre-commit /Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/post-checkout",
   "description": "Check file types of active hooks"
 }
 
@@ -122,7 +122,7 @@ Interesting! I found another directory with hooks. Let me read the pre-commit an
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/--help/_/pre-commit"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/--help/_/pre-commit"
 }
 
 
@@ -133,7 +133,7 @@ Input: {
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/--help/_/pre-push"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/--help/_/pre-push"
 }
 
 
@@ -144,7 +144,7 @@ Input: {
 
 🔧 Using tool: Bash
 Input: {
-  "command": "ls -la /Users/nik/Documents/Code/Polygot/docimp/ | head -20",
+  "command": "ls -la /Users/nik/Documents/Code/Polyglot/docimp/ | head -20",
   "description": "Check repository root structure"
 }
 
@@ -162,7 +162,7 @@ I see there's also a `.husky` directory. Let me check that and the `h` file that
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/--help/_/h"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/--help/_/h"
 }
 
 
@@ -173,7 +173,7 @@ Input: {
 
 🔧 Using tool: Bash
 Input: {
-  "command": "ls -la /Users/nik/Documents/Code/Polygot/docimp/.husky/",
+  "command": "ls -la /Users/nik/Documents/Code/Polyglot/docimp/.husky/",
   "description": "List husky directory contents"
 }
 
@@ -186,7 +186,7 @@ Input: {
 🔧 Using tool: Glob
 Input: {
   "pattern": "**/.husky/pre-commit",
-  "path": "/Users/nik/Documents/Code/Polygot/docimp"
+  "path": "/Users/nik/Documents/Code/Polyglot/docimp"
 }
 
 
@@ -198,7 +198,7 @@ Input: {
 🔧 Using tool: Glob
 Input: {
   "pattern": "**/.husky/pre-push",
-  "path": "/Users/nik/Documents/Code/Polygot/docimp"
+  "path": "/Users/nik/Documents/Code/Polyglot/docimp"
 }
 
 
@@ -215,7 +215,7 @@ Now let me read the Husky hooks:
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/.husky/pre-commit"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/.husky/pre-commit"
 }
 
 
@@ -226,7 +226,7 @@ Input: {
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/.husky/post-checkout"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/.husky/post-checkout"
 }
 
 
@@ -237,7 +237,7 @@ Input: {
 
 🔧 Using tool: Bash
 Input: {
-  "command": "find /Users/nik/Documents/Code/Polygot/docimp -type f -name \"pre-push\" 2>/dev/null",
+  "command": "find /Users/nik/Documents/Code/Polyglot/docimp -type f -name \"pre-push\" 2>/dev/null",
   "description": "Search for all pre-push files"
 }
 
@@ -255,7 +255,7 @@ Let me check if there's an actual pre-push hook in the .husky directory (not jus
 
 🔧 Using tool: Bash
 Input: {
-  "command": "test -f /Users/nik/Documents/Code/Polygot/docimp/.husky/pre-push && echo \"exists\" || echo \"does not exist\"",
+  "command": "test -f /Users/nik/Documents/Code/Polyglot/docimp/.husky/pre-push && echo \"exists\" || echo \"does not exist\"",
   "description": "Check if .husky/pre-push exists"
 }
 
@@ -267,7 +267,7 @@ Input: {
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/.husky/_/husky.sh"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/.husky/_/husky.sh"
 }
 
 
@@ -278,7 +278,7 @@ Input: {
 
 🔧 Using tool: Bash
 Input: {
-  "command": "ls -la /Users/nik/Documents/Code/Polygot/docimp/.git/hooks/ | grep -E \"pre-push\"",
+  "command": "ls -la /Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/ | grep -E \"pre-push\"",
   "description": "Check for pre-push in git hooks"
 }
 
@@ -297,7 +297,7 @@ Let me check the .husky directory more carefully and search for any other hook-r
 🔧 Using tool: Glob
 Input: {
   "pattern": "**/hooks/**",
-  "path": "/Users/nik/Documents/Code/Polygot/docimp"
+  "path": "/Users/nik/Documents/Code/Polyglot/docimp"
 }
 
 
@@ -309,7 +309,7 @@ Input: {
 🔧 Using tool: Grep
 Input: {
   "pattern": "pre-push",
-  "path": "/Users/nik/Documents/Code/Polygot/docimp",
+  "path": "/Users/nik/Documents/Code/Polyglot/docimp",
   "output_mode": "files_with_matches"
 }
 
@@ -327,7 +327,7 @@ Let me read that documentation file to understand the hook setup better:
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/docs/quality-control/quality-setup-git-hooks.md"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/docs/quality-control/quality-setup-git-hooks.md"
 }
 
 
@@ -345,7 +345,7 @@ Perfect! Now let me check if there are any actual pre-push implementations. Let 
 🔧 Using tool: Glob
 Input: {
   "pattern": "**/package.json",
-  "path": "/Users/nik/Documents/Code/Polygot/docimp"
+  "path": "/Users/nik/Documents/Code/Polyglot/docimp"
 }
 
 
@@ -356,7 +356,7 @@ Input: {
 
 🔧 Using tool: Bash
 Input: {
-  "command": "test -f /Users/nik/Documents/Code/Polygot/docimp/.git/hooks/pre-push && cat /Users/nik/Documents/Code/Polygot/docimp/.git/hooks/pre-push || echo \"No active pre-push hook found\"",
+  "command": "test -f /Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/pre-push && cat /Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/pre-push || echo \"No active pre-push hook found\"",
   "description": "Check for active pre-push hook"
 }
 
@@ -374,7 +374,7 @@ Let me search for the main package.json files more specifically:
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/package.json"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/package.json"
 }
 
 
@@ -385,7 +385,7 @@ Input: {
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/cli/package.json"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/cli/package.json"
 }
 
 
@@ -403,7 +403,7 @@ Excellent! Now let me check if there's a pre-push hook in the .husky directory t
 🔧 Using tool: Grep
 Input: {
   "pattern": "pre-push",
-  "path": "/Users/nik/Documents/Code/Polygot/docimp/.husky",
+  "path": "/Users/nik/Documents/Code/Polyglot/docimp/.husky",
   "output_mode": "content",
   "-n": true
 }
@@ -416,7 +416,7 @@ Input: {
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Documents/Code/Polygot/docimp/.husky/README.md"
+  "file_path": "/Users/nik/Documents/Code/Polyglot/docimp/.husky/README.md"
 }
 
 
@@ -428,41 +428,41 @@ Perfect! Now I have a comprehensive picture. Let me create a summary of all the 
 
 ## Search Results Summary
 
-I found several git hook files in the docimp repository at `/Users/nik/Documents/Code/Polygot/docimp/`. Here's what I discovered:
+I found several git hook files in the docimp repository at `/Users/nik/Documents/Code/Polyglot/docimp/`. Here's what I discovered:
 
 ### Active Git Hooks (in `.git/hooks/`)
 
 **1. Pre-commit Hook**
-- Location: `/Users/nik/Documents/Code/Polygot/docimp/.git/hooks/pre-commit`
+- Location: `/Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/pre-commit`
 - Type: Custom worktree protection script
 - Purpose: Blocks commits on the main branch when in the main worktree
 
 **2. Post-checkout Hook**
-- Location: `/Users/nik/Documents/Code/Polygot/docimp/.git/hooks/post-checkout`
+- Location: `/Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/post-checkout`
 - Type: Custom worktree protection script  
 - Purpose: Blocks branch checkouts in the main worktree (keeps main worktree on main branch only)
 
 ### Husky Hooks (in `.husky/`)
 
 **3. Pre-commit Hook (Husky)**
-- Location: `/Users/nik/Documents/Code/Polygot/docimp/.husky/pre-commit`
+- Location: `/Users/nik/Documents/Code/Polyglot/docimp/.husky/pre-commit`
 - Purpose: Calls the git protection hook and runs lint-staged
 
 **4. Post-checkout Hook (Husky)**
-- Location: `/Users/nik/Documents/Code/Polygot/docimp/.husky/post-checkout`
+- Location: `/Users/nik/Documents/Code/Polyglot/docimp/.husky/post-checkout`
 - Purpose: Calls the git protection hook
 
 ### Pre-push Hook Status
 
 **No active pre-push hook found.** Only a sample file exists at:
-- `/Users/nik/Documents/Code/Polygot/docimp/.git/hooks/pre-push.sample`
+- `/Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/pre-push.sample`
 
 ---
 
 ## Complete Hook Contents
 
 ### 1. Git Pre-commit Hook
-**Location:** `/Users/nik/Documents/Code/Polygot/docimp/.git/hooks/pre-commit`
+**Location:** `/Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/pre-commit`
 
 ```bash
 #!/bin/bash
@@ -521,7 +521,7 @@ exit 0
 ```
 
 ### 2. Git Post-checkout Hook
-**Location:** `/Users/nik/Documents/Code/Polygot/docimp/.git/hooks/post-checkout`
+**Location:** `/Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/post-checkout`
 
 ```bash
 #!/bin/bash
@@ -591,7 +591,7 @@ exit 0
 ```
 
 ### 3. Husky Pre-commit Hook
-**Location:** `/Users/nik/Documents/Code/Polygot/docimp/.husky/pre-commit`
+**Location:** `/Users/nik/Documents/Code/Polyglot/docimp/.husky/pre-commit`
 
 ```bash
 #!/usr/bin/env sh
@@ -604,7 +604,7 @@ cd cli && npx lint-staged
 ```
 
 ### 4. Husky Post-checkout Hook
-**Location:** `/Users/nik/Documents/Code/Polygot/docimp/.husky/post-checkout`
+**Location:** `/Users/nik/Documents/Code/Polyglot/docimp/.husky/post-checkout`
 
 ```bash
 #!/usr/bin/env sh
@@ -616,7 +616,7 @@ GIT_COMMON_DIR=$(git rev-parse --git-common-dir)
 ---
 
 ## Lint-staged Configuration
-**Location:** `/Users/nik/Documents/Code/Polygot/docimp/cli/package.json` (lines 70-79)
+**Location:** `/Users/nik/Documents/Code/Polyglot/docimp/cli/package.json` (lines 70-79)
 
 ```json
 "lint-staged": {

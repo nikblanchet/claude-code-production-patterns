@@ -460,7 +460,7 @@ This file provides the **Repository Worktree and Symlink Structure** diagram and
 
 - **Main Worktree Structure:**
   ```
-  /Users/nik/Documents/Code/Polygot/docimp/
+  /Users/nik/Documents/Code/Polyglot/docimp/
   ├── analyzer/ (Python analysis engine)
   ├── cli/ (TypeScript CLI)
   ├── plugins/ (JavaScript validation)

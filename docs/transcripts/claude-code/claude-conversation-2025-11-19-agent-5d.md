@@ -16,7 +16,7 @@ I'll read and analyze these three documentation files to extract the specific in
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Code/Polygot/docimp/.planning/INFRASTRUCTURE-DOCS_3-Claude-Code-Config.md"
+  "file_path": "/Users/nik/Code/Polyglot/docimp/.planning/INFRASTRUCTURE-DOCS_3-Claude-Code-Config.md"
 }
 
 
@@ -27,7 +27,7 @@ Input: {
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Code/Polygot/docimp/.planning/INFRASTRUCTURE-DOCS_6-Direnv-Integration.md"
+  "file_path": "/Users/nik/Code/Polyglot/docimp/.planning/INFRASTRUCTURE-DOCS_6-Direnv-Integration.md"
 }
 
 
@@ -38,7 +38,7 @@ Input: {
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Code/Polygot/docimp/.planning/ARCHITECTURE_DIAGRAMS.md"
+  "file_path": "/Users/nik/Code/Polyglot/docimp/.planning/ARCHITECTURE_DIAGRAMS.md"
 }
 
 
@@ -55,7 +55,7 @@ I need permission to read files outside the current working directory. Let me us
 
 🔧 Using tool: Bash
 Input: {
-  "command": "cat \"/Users/nik/Code/Polygot/docimp/.planning/INFRASTRUCTURE-DOCS_3-Claude-Code-Config.md\"",
+  "command": "cat \"/Users/nik/Code/Polyglot/docimp/.planning/INFRASTRUCTURE-DOCS_3-Claude-Code-Config.md\"",
   "description": "Read Claude Code Config documentation"
 }
 
@@ -67,7 +67,7 @@ Input: {
 
 🔧 Using tool: Bash
 Input: {
-  "command": "cat \"/Users/nik/Code/Polygot/docimp/.planning/INFRASTRUCTURE-DOCS_6-Direnv-Integration.md\"",
+  "command": "cat \"/Users/nik/Code/Polyglot/docimp/.planning/INFRASTRUCTURE-DOCS_6-Direnv-Integration.md\"",
   "description": "Read Direnv Integration documentation"
 }
 
@@ -79,7 +79,7 @@ Input: {
 
 🔧 Using tool: Bash
 Input: {
-  "command": "cat \"/Users/nik/Code/Polygot/docimp/.planning/ARCHITECTURE_DIAGRAMS.md\"",
+  "command": "cat \"/Users/nik/Code/Polyglot/docimp/.planning/ARCHITECTURE_DIAGRAMS.md\"",
   "description": "Read Architecture Diagrams documentation"
 }
 
@@ -88,13 +88,13 @@ Input: {
 
 ## 🤖 Claude
 
-I see that I'm in a restricted mode for accessing files outside the current working directory. I need to inform you that I cannot read files from `/Users/nik/Code/Polygot/docimp/.planning/` as they are outside my current working directory `/Users/nik/Documents/Code/claude-code-production-patterns`.
+I see that I'm in a restricted mode for accessing files outside the current working directory. I need to inform you that I cannot read files from `/Users/nik/Code/Polyglot/docimp/.planning/` as they are outside my current working directory `/Users/nik/Documents/Code/claude-code-production-patterns`.
 
 To complete this task, I would need one of the following:
 
-1. **Copy the files to the current working directory**: You could copy these three files from `/Users/nik/Code/Polygot/docimp/.planning/` to `/Users/nik/Documents/Code/claude-code-production-patterns/` (or a subdirectory)
+1. **Copy the files to the current working directory**: You could copy these three files from `/Users/nik/Code/Polyglot/docimp/.planning/` to `/Users/nik/Documents/Code/claude-code-production-patterns/` (or a subdirectory)
 
-2. **Change the working directory**: Navigate to `/Users/nik/Code/Polygot/docimp/` as the working directory
+2. **Change the working directory**: Navigate to `/Users/nik/Code/Polyglot/docimp/` as the working directory
 
 3. **Provide the content directly**: Share the content of these files in your message
 

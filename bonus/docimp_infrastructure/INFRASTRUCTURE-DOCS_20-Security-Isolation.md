@@ -135,8 +135,8 @@ fi
 ```
 
 **Path Examples**:
-- Main worktree: `/Users/nik/Documents/Code/Polygot/docimp`
-- Feature worktree: `/Users/nik/Documents/Code/Polygot/.docimp-wt/issue-221`
+- Main worktree: `/Users/nik/Documents/Code/Polyglot/docimp`
+- Feature worktree: `/Users/nik/Documents/Code/Polyglot/.docimp-wt/issue-221`
 
 **Robust Detection**: Pattern `/.docimp-wt/` is unlikely to appear in main worktree path
 
@@ -743,7 +743,7 @@ jobs:
     ],
     "Read": [
       "./**",  // Project files
-      "//Users/nik/Code/Polygot/.docimp-shared/**"  // Shared infrastructure
+      "//Users/nik/Code/Polyglot/.docimp-shared/**"  // Shared infrastructure
     ],
     "Write": [
       "./**"  // Project files only
@@ -763,8 +763,8 @@ jobs:
 ### File System Boundaries
 
 **Allowed Write Paths**:
-- Project directory: `/Users/nik/Documents/Code/Polygot/docimp/`
-- Shared infrastructure: `/Users/nik/Documents/Code/Polygot/.docimp-shared/`
+- Project directory: `/Users/nik/Documents/Code/Polyglot/docimp/`
+- Shared infrastructure: `/Users/nik/Documents/Code/Polyglot/.docimp-shared/`
 
 **Prohibited Write Paths**:
 - Home directory: `/Users/nik/` (too broad)

@@ -43,8 +43,8 @@ This reference serves as:
 
 | Component       | File/Location                                                          | Type  | Purpose                                                              | Maintenance                        |
 |-----------------|------------------------------------------------------------------------|-------|----------------------------------------------------------------------|------------------------------------|
-| Pre-commit hook | `/Users/nik/Documents/Code/Polygot/docimp/.git/hooks/pre-commit`       | Bash  | Blocks commits to main branch in main worktree                       | Update when adding new worktrees   |
-| Post-checkout   | `/Users/nik/Documents/Code/Polygot/docimp/.git/hooks/post-checkout`    | Bash  | Prevents branch checkouts other than main in main worktree           | Rarely updated                     |
+| Pre-commit hook | `/Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/pre-commit`       | Bash  | Blocks commits to main branch in main worktree                       | Update when adding new worktrees   |
+| Post-checkout   | `/Users/nik/Documents/Code/Polyglot/docimp/.git/hooks/post-checkout`    | Bash  | Prevents branch checkouts other than main in main worktree           | Rarely updated                     |
 
 **Key Settings:**
 ```bash
@@ -67,10 +67,10 @@ fi
 
 | Component         | File/Location                                                     | Type  | Purpose                                           | Maintenance                      |
 |-------------------|-------------------------------------------------------------------|-------|---------------------------------------------------|----------------------------------|
-| Pre-commit disp.  | `/Users/nik/Documents/Code/Polygot/docimp/.husky/pre-commit`      | Bash  | Dispatcher: calls protected hook + lint-staged    | Update when adding new hooks     |
-| Post-checkout d.  | `/Users/nik/Documents/Code/Polygot/docimp/.husky/post-checkout`   | Bash  | Dispatcher: calls protected hook                  | Rarely updated                   |
-| Setup README      | `/Users/nik/Documents/Code/Polygot/docimp/.husky/README.md`       | MD    | Instructions for per-worktree Husky config        | Update when workflow changes     |
-| Generated hooks   | `/Users/nik/Documents/Code/Polygot/docimp/.husky/_/` (gitignored) | Dir   | Per-worktree generated files                      | Auto-generated, no manual edits  |
+| Pre-commit disp.  | `/Users/nik/Documents/Code/Polyglot/docimp/.husky/pre-commit`      | Bash  | Dispatcher: calls protected hook + lint-staged    | Update when adding new hooks     |
+| Post-checkout d.  | `/Users/nik/Documents/Code/Polyglot/docimp/.husky/post-checkout`   | Bash  | Dispatcher: calls protected hook                  | Rarely updated                   |
+| Setup README      | `/Users/nik/Documents/Code/Polyglot/docimp/.husky/README.md`       | MD    | Instructions for per-worktree Husky config        | Update when workflow changes     |
+| Generated hooks   | `/Users/nik/Documents/Code/Polyglot/docimp/.husky/_/` (gitignored) | Dir   | Per-worktree generated files                      | Auto-generated, no manual edits  |
 
 **Key Settings:**
 ```bash
@@ -98,7 +98,7 @@ npx lint-staged
 
 | Component      | File/Location                                                | Type        | Purpose                                  | Maintenance                     |
 |----------------|--------------------------------------------------------------|-------------|------------------------------------------|---------------------------------|
-| Configuration  | `/Users/nik/Documents/Code/Polygot/docimp/cli/package.json` | JSON (npm)  | Pre-commit linting/formatting for staged | Update when adding file types   |
+| Configuration  | `/Users/nik/Documents/Code/Polyglot/docimp/cli/package.json` | JSON (npm)  | Pre-commit linting/formatting for staged | Update when adding file types   |
 
 **Key Settings:**
 ```json
@@ -125,14 +125,14 @@ npx lint-staged
 
 | Component         | File/Location                                                              | Type    | Purpose                                         | Maintenance                    |
 |-------------------|----------------------------------------------------------------------------|---------|-------------------------------------------------|--------------------------------|
-| Agents            | `/Users/nik/Documents/Code/Polygot/docimp/.claude/agents` (symlink)       | Symlink | Specialized agent configs                       | Managed in .docimp-shared/     |
-| Settings          | `/Users/nik/Documents/Code/Polygot/docimp/.claude/settings.local.json`    | Symlink | Permission whitelist, tool access patterns      | Update when adding permissions |
-| Skills            | `/Users/nik/Documents/Code/Polygot/docimp/.claude/skills` (symlink)       | Symlink | Custom skills for Claude Code                   | Managed in .docimp-shared/     |
+| Agents            | `/Users/nik/Documents/Code/Polyglot/docimp/.claude/agents` (symlink)       | Symlink | Specialized agent configs                       | Managed in .docimp-shared/     |
+| Settings          | `/Users/nik/Documents/Code/Polyglot/docimp/.claude/settings.local.json`    | Symlink | Permission whitelist, tool access patterns      | Update when adding permissions |
+| Skills            | `/Users/nik/Documents/Code/Polyglot/docimp/.claude/skills` (symlink)       | Symlink | Custom skills for Claude Code                   | Managed in .docimp-shared/     |
 
 **Symlink Targets:**
 ```bash
 agents/ → ../../.docimp-shared/.claude/agents
-settings.local.json → /Users/nik/Code/Polygot/.docimp-shared/.claude/settings.local.json
+settings.local.json → /Users/nik/Code/Polyglot/.docimp-shared/.claude/settings.local.json
 skills/ → ../../.docimp-shared/.claude/skills
 ```
 
@@ -142,7 +142,7 @@ skills/ → ../../.docimp-shared/.claude/skills
 
 | Component | File/Location                                                            | Type | Purpose                          | Maintenance                               |
 |-----------|--------------------------------------------------------------------------|------|----------------------------------|-------------------------------------------|
-| Settings  | `/Users/nik/Code/Polygot/.docimp-shared/.claude/settings.local.json`    | JSON | Permissions for tools and skills | Update when granting new capabilities     |
+| Settings  | `/Users/nik/Code/Polyglot/.docimp-shared/.claude/settings.local.json`    | JSON | Permissions for tools and skills | Update when granting new capabilities     |
 
 **Key Settings:**
 ```json
@@ -151,7 +151,7 @@ skills/ → ../../.docimp-shared/.claude/skills
     "Bash(docimp analyze:*)",
     "Bash(uv run pytest:*)",
     "Bash(gh pr create:*)",
-    "Glob(//Users/nik/Code/Polygot/.docimp-shared/**)",
+    "Glob(//Users/nik/Code/Polyglot/.docimp-shared/**)",
     "Read(//Users/nik/Code/repos/custom-claude-skills/**)",
     "Skill(git-workflow)"
   ]
@@ -171,7 +171,7 @@ skills/ → ../../.docimp-shared/.claude/skills
 
 | Component  | File/Location                                              | Type | Purpose                              | Maintenance                           |
 |------------|------------------------------------------------------------|------|--------------------------------------|---------------------------------------|
-| Main guide | `/Users/nik/Documents/Code/Polygot/docimp/CLAUDE.md`       | MD   | Technical guide for Claude Code      | Update when architecture changes      |
+| Main guide | `/Users/nik/Documents/Code/Polyglot/docimp/CLAUDE.md`       | MD   | Technical guide for Claude Code      | Update when architecture changes      |
 
 **Key Settings:**
 - Character limit: 40,000 bytes (absolute maximum)
@@ -191,7 +191,7 @@ skills/ → ../../.docimp-shared/.claude/skills
 
 | Component       | File/Location                                                  | Type | Purpose                        | Maintenance                      |
 |-----------------|----------------------------------------------------------------|------|--------------------------------|----------------------------------|
-| Private context | `/Users/nik/Documents/Code/Polygot/docimp/CLAUDE_CONTEXT.md`  | MD   | Private project context        | Update as project evolves        |
+| Private context | `/Users/nik/Documents/Code/Polyglot/docimp/CLAUDE_CONTEXT.md`  | MD   | Private project context        | Update as project evolves        |
 
 **Key Settings:**
 - Gitignored (private)
@@ -211,8 +211,8 @@ skills/ → ../../.docimp-shared/.claude/skills
 
 | Component       | File/Location                                                         | Type | Purpose                       | Maintenance                          |
 |-----------------|-----------------------------------------------------------------------|------|-------------------------------|--------------------------------------|
-| Root config     | `/Users/nik/Documents/Code/Polygot/docimp/ruff.toml`                  | TOML | Global Ruff linting rules     | Update when adding exclusions        |
-| Analyzer config | `/Users/nik/Documents/Code/Polygot/docimp/analyzer/pyproject.toml`   | TOML | Analyzer-specific Ruff config | Update when adding rule groups       |
+| Root config     | `/Users/nik/Documents/Code/Polyglot/docimp/ruff.toml`                  | TOML | Global Ruff linting rules     | Update when adding exclusions        |
+| Analyzer config | `/Users/nik/Documents/Code/Polyglot/docimp/analyzer/pyproject.toml`   | TOML | Analyzer-specific Ruff config | Update when adding rule groups       |
 
 **Key Settings (ruff.toml):**
 ```toml
@@ -255,8 +255,8 @@ select = ["E", "F", "DTZ", "UP", "PTH", "I", "SIM", "PERF", "YTT"]
 
 | Component   | File/Location                                                     | Type | Purpose                | Maintenance                      |
 |-------------|-------------------------------------------------------------------|------|------------------------|----------------------------------|
-| pytest.ini  | `/Users/nik/Documents/Code/Polygot/docimp/analyzer/pytest.ini`    | INI  | Test discovery, markers| Update when adding markers       |
-| pyproject   | `/Users/nik/Documents/Code/Polygot/docimp/pyproject.toml`         | TOML | Pytest config          | Coordinate with pytest.ini       |
+| pytest.ini  | `/Users/nik/Documents/Code/Polyglot/docimp/analyzer/pytest.ini`    | INI  | Test discovery, markers| Update when adding markers       |
+| pyproject   | `/Users/nik/Documents/Code/Polyglot/docimp/pyproject.toml`         | TOML | Pytest config          | Coordinate with pytest.ini       |
 
 **Key Settings (pytest.ini):**
 ```ini
@@ -282,7 +282,7 @@ markers =
 
 | Component | File/Location                                           | Type | Purpose           | Maintenance                    |
 |-----------|---------------------------------------------------------|------|-------------------|--------------------------------|
-| Config    | `/Users/nik/Documents/Code/Polygot/docimp/pyproject.toml` | TOML | Type checking     | Update when adding modules     |
+| Config    | `/Users/nik/Documents/Code/Polyglot/docimp/pyproject.toml` | TOML | Type checking     | Update when adding modules     |
 
 **Key Settings:**
 ```toml
@@ -308,7 +308,7 @@ ignore_missing_imports = true
 
 | Component | File/Location                                             | Type | Purpose                  | Maintenance                         |
 |-----------|-----------------------------------------------------------|------|--------------------------|-------------------------------------|
-| Config    | `/Users/nik/Documents/Code/Polygot/docimp/cli/tsconfig.json` | JSON | TypeScript compilation   | Update when changing module system  |
+| Config    | `/Users/nik/Documents/Code/Polyglot/docimp/cli/tsconfig.json` | JSON | TypeScript compilation   | Update when changing module system  |
 
 **Key Settings:**
 ```json
@@ -337,7 +337,7 @@ ignore_missing_imports = true
 
 | Component | File/Location                                                | Type | Purpose          | Maintenance                        |
 |-----------|--------------------------------------------------------------|------|------------------|------------------------------------|
-| Config    | `/Users/nik/Documents/Code/Polygot/docimp/cli/eslint.config.mjs` | MJS  | ESLint flat config | Update when adding plugins         |
+| Config    | `/Users/nik/Documents/Code/Polyglot/docimp/cli/eslint.config.mjs` | MJS  | ESLint flat config | Update when adding plugins         |
 
 **Key Settings:**
 ```javascript
@@ -376,7 +376,7 @@ export default [
 
 | Component | File/Location                                          | Type | Purpose         | Maintenance               |
 |-----------|--------------------------------------------------------|------|-----------------|---------------------------|
-| Config    | `/Users/nik/Documents/Code/Polygot/docimp/.prettierrc` | JSON | Code formatting | Rarely updated            |
+| Config    | `/Users/nik/Documents/Code/Polyglot/docimp/.prettierrc` | JSON | Code formatting | Rarely updated            |
 
 **Key Settings:**
 ```json
@@ -404,7 +404,7 @@ export default [
 
 | Component | File/Location                                             | Type | Purpose       | Maintenance                      |
 |-----------|-----------------------------------------------------------|------|---------------|----------------------------------|
-| Config    | `/Users/nik/Documents/Code/Polygot/docimp/cli/jest.config.js` | JS   | Jest test runner | Update when adding test patterns |
+| Config    | `/Users/nik/Documents/Code/Polyglot/docimp/cli/jest.config.js` | JS   | Jest test runner | Update when adding test patterns |
 
 **Key Settings:**
 ```javascript
@@ -436,7 +436,7 @@ export default {
 
 | Component | File/Location                                                     | Type | Purpose       | Maintenance                    |
 |-----------|-------------------------------------------------------------------|------|---------------|--------------------------------|
-| CI config | `/Users/nik/Documents/Code/Polygot/docimp/.github/workflows/ci.yml` | YAML | CI/CD pipeline| Update when adding test jobs   |
+| CI config | `/Users/nik/Documents/Code/Polyglot/docimp/.github/workflows/ci.yml` | YAML | CI/CD pipeline| Update when adding test jobs   |
 
 **Key Jobs:**
 
@@ -491,7 +491,7 @@ export default {
 
 | Component | File/Location                                      | Type | Purpose             | Maintenance                  |
 |-----------|----------------------------------------------------|------|---------------------|------------------------------|
-| .envrc    | `/Users/nik/Documents/Code/Polygot/docimp/.envrc`  | Bash | Tool interception   | Update when adding tools     |
+| .envrc    | `/Users/nik/Documents/Code/Polyglot/docimp/.envrc`  | Bash | Tool interception   | Update when adding tools     |
 
 **Key Functionality:**
 ```bash
@@ -521,7 +521,7 @@ Reads .nvmrc, adds Node to PATH
 
 | Component | File/Location                                    | Type | Purpose         | Maintenance                     |
 |-----------|--------------------------------------------------|------|-----------------|---------------------------------|
-| .nvmrc    | `/Users/nik/Documents/Code/Polygot/docimp/.nvmrc` | Text | Node version pin| Update when upgrading Node      |
+| .nvmrc    | `/Users/nik/Documents/Code/Polyglot/docimp/.nvmrc` | Text | Node version pin| Update when upgrading Node      |
 
 **Key Settings:**
 ```
@@ -546,7 +546,7 @@ git commit -m "Update Node to 24.12.0"
 
 | Component      | File/Location                                              | Type | Purpose          | Maintenance                |
 |----------------|------------------------------------------------------------|------|------------------|----------------------------|
-| .python-version| `/Users/nik/Documents/Code/Polygot/docimp/.python-version` | Text | Python version   | Update when upgrading Python|
+| .python-version| `/Users/nik/Documents/Code/Polyglot/docimp/.python-version` | Text | Python version   | Update when upgrading Python|
 
 **Key Settings:**
 ```
@@ -568,10 +568,10 @@ git commit -m "Update Node to 24.12.0"
 
 | Component       | File/Location                                                  | Type | Purpose                  | Maintenance                      |
 |-----------------|----------------------------------------------------------------|------|--------------------------|----------------------------------|
-| pyproject.toml  | `/Users/nik/Documents/Code/Polygot/docimp/pyproject.toml`      | TOML | Python project metadata  | Update when changing deps        |
-| uv.lock         | `/Users/nik/Documents/Code/Polygot/docimp/uv.lock`             | TOML | uv native lockfile       | Auto-generated                   |
-| requirements    | `/Users/nik/Documents/Code/Polygot/docimp/requirements.lock`   | Text | Runtime dependencies     | Auto-generated                   |
-| requirements-dev| `/Users/nik/Documents/Code/Polygot/docimp/requirements-dev.lock`| Text | Dev dependencies        | Auto-generated                   |
+| pyproject.toml  | `/Users/nik/Documents/Code/Polyglot/docimp/pyproject.toml`      | TOML | Python project metadata  | Update when changing deps        |
+| uv.lock         | `/Users/nik/Documents/Code/Polyglot/docimp/uv.lock`             | TOML | uv native lockfile       | Auto-generated                   |
+| requirements    | `/Users/nik/Documents/Code/Polyglot/docimp/requirements.lock`   | Text | Runtime dependencies     | Auto-generated                   |
+| requirements-dev| `/Users/nik/Documents/Code/Polyglot/docimp/requirements-dev.lock`| Text | Dev dependencies        | Auto-generated                   |
 
 **Key Dependencies:**
 ```toml
@@ -609,8 +609,8 @@ uv pip sync requirements-dev.lock
 
 | Component       | File/Location                                                  | Type | Purpose                  | Maintenance                   |
 |-----------------|----------------------------------------------------------------|------|--------------------------|-------------------------------|
-| package.json    | `/Users/nik/Documents/Code/Polygot/docimp/cli/package.json`    | JSON | Node.js project metadata | Update when changing deps     |
-| package-lock    | `/Users/nik/Documents/Code/Polygot/docimp/cli/package-lock.json`| JSON | npm lockfile            | Auto-generated                |
+| package.json    | `/Users/nik/Documents/Code/Polyglot/docimp/cli/package.json`    | JSON | Node.js project metadata | Update when changing deps     |
+| package-lock    | `/Users/nik/Documents/Code/Polyglot/docimp/cli/package-lock.json`| JSON | npm lockfile            | Auto-generated                |
 
 **Key Scripts:**
 ```json
@@ -651,7 +651,7 @@ npm update  # (update all)
 
 | Component   | File/Location                                           | Type | Purpose                  | Maintenance              |
 |-------------|---------------------------------------------------------|------|--------------------------|--------------------------|
-| .editorconfig| `/Users/nik/Documents/Code/Polygot/docimp/.editorconfig` | INI  | Cross-editor consistency | Rarely updated           |
+| .editorconfig| `/Users/nik/Documents/Code/Polyglot/docimp/.editorconfig` | INI  | Cross-editor consistency | Rarely updated           |
 
 **Key Settings:**
 
@@ -714,7 +714,7 @@ npm update  # (update all)
 
 | Component       | File/Location                                         | Type | Purpose              | Maintenance                  |
 |-----------------|-------------------------------------------------------|------|----------------------|------------------------------|
-| Test directory  | `/Users/nik/Documents/Code/Polygot/docimp/analyzer/tests/` | Dir  | 46+ test files       | Add tests for new features   |
+| Test directory  | `/Users/nik/Documents/Code/Polyglot/docimp/analyzer/tests/` | Dir  | 46+ test files       | Add tests for new features   |
 
 **Key Test Files:**
 - `test_analyzer.py` - Core analyzer
@@ -741,7 +741,7 @@ npm update  # (update all)
 
 | Component      | File/Location                                             | Type | Purpose           | Maintenance                 |
 |----------------|-----------------------------------------------------------|------|-------------------|-----------------------------|
-| Test directory | `/Users/nik/Documents/Code/Polygot/docimp/cli/src/__tests__/` | Dir  | 27+ test files    | Add tests for new features  |
+| Test directory | `/Users/nik/Documents/Code/Polyglot/docimp/cli/src/__tests__/` | Dir  | 27+ test files    | Add tests for new features  |
 
 **Key Directories:**
 - `commands/` - Command tests
@@ -804,7 +804,7 @@ npm update  # (update all)
 
 | Component | File/Location                                    | Type     | Purpose              | Maintenance        |
 |-----------|--------------------------------------------------|----------|----------------------|--------------------|
-| Makefile  | `/Users/nik/Documents/Code/Polygot/docimp/Makefile` | Makefile | Development targets  | Add targets as needed|
+| Makefile  | `/Users/nik/Documents/Code/Polyglot/docimp/Makefile` | Makefile | Development targets  | Add targets as needed|
 
 **Targets:**
 - `make setup` - Create environment
@@ -828,7 +828,7 @@ npm update  # (update all)
 
 | Component  | File/Location                                       | Type | Purpose         | Maintenance                  |
 |------------|-----------------------------------------------------|------|-----------------|------------------------------|
-| .gitignore | `/Users/nik/Documents/Code/Polygot/docimp/.gitignore` | Text | Git exclusions  | Update when adding artifacts |
+| .gitignore | `/Users/nik/Documents/Code/Polyglot/docimp/.gitignore` | Text | Git exclusions  | Update when adding artifacts |
 
 **Key Exclusions:**
 - Dependencies: `node_modules/`, `.venv/`
@@ -844,7 +844,7 @@ npm update  # (update all)
 
 | Component       | File/Location                                             | Type | Purpose              | Maintenance                 |
 |-----------------|-----------------------------------------------------------|------|----------------------|-----------------------------|
-| .prettierignore | `/Users/nik/Documents/Code/Polygot/docimp/.prettierignore` | Text | Format exclusions    | Update when adding artifacts|
+| .prettierignore | `/Users/nik/Documents/Code/Polyglot/docimp/.prettierignore` | Text | Format exclusions    | Update when adding artifacts|
 
 **Key Exclusions:**
 - Dependencies

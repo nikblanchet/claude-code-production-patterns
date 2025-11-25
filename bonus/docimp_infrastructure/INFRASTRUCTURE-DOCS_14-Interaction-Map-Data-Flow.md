@@ -29,7 +29,7 @@ The following ASCII diagram illustrates the complete infrastructure component gr
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────┐
 │                         SHARED INFRASTRUCTURE                                   │
-│                    /Users/nik/Documents/Code/Polygot/.docimp-shared/            │
+│                    /Users/nik/Documents/Code/Polyglot/.docimp-shared/            │
 ├─────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                 │
 │  ┌───────────────────────────────────┐  ┌────────────────────────────────────┐ │
@@ -51,7 +51,7 @@ The following ASCII diagram illustrates the complete infrastructure component gr
                                     ↓ (symlinks)
 ┌─────────────────────────────────────────────────────────────────────────────────┐
 │                            MAIN REPOSITORY                                      │
-│                /Users/nik/Documents/Code/Polygot/docimp/                        │
+│                /Users/nik/Documents/Code/Polyglot/docimp/                        │
 ├─────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                 │
 │  GIT HOOKS & WORKFLOW PROTECTION                                                │
@@ -267,7 +267,7 @@ The following ASCII diagram illustrates the complete infrastructure component gr
                                     ↕ (symlinks in worktrees)
 ┌─────────────────────────────────────────────────────────────────────────────────┐
 │                        FEATURE WORKTREES                                        │
-│            /Users/nik/Documents/Code/Polygot/.docimp-wt/                        │
+│            /Users/nik/Documents/Code/Polyglot/.docimp-wt/                        │
 ├─────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                 │
 │  issue-243/                                                                     │
@@ -625,7 +625,7 @@ This sequence shows a complete development cycle from worktree creation to PR me
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  Step 1: Create Feature Worktree                                           │
 └─────────────────────────────────────────────────────────────────────────────┘
-$ cd /Users/nik/Documents/Code/Polygot/docimp
+$ cd /Users/nik/Documents/Code/Polyglot/docimp
 $ python3 .claude/skills/git-workflow/scripts/create_worktree.py \
     issue-243 feature/issue-243-add-jsx-support
 
@@ -639,7 +639,7 @@ $ python3 .claude/skills/git-workflow/scripts/create_worktree.py \
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  Step 2: direnv Loads Environment                                          │
 └─────────────────────────────────────────────────────────────────────────────┘
-$ cd /Users/nik/Documents/Code/Polygot/.docimp-wt/issue-243
+$ cd /Users/nik/Documents/Code/Polyglot/.docimp-wt/issue-243
 $ direnv allow  # (prompts on first entry)
 
 # .envrc actions:
@@ -748,7 +748,7 @@ $ gh pr merge 243 --squash --delete-branch
 # - Local worktree remains (manual cleanup)
 
 # Manual cleanup (optional):
-$ cd /Users/nik/Documents/Code/Polygot/docimp
+$ cd /Users/nik/Documents/Code/Polyglot/docimp
 $ git worktree remove ../.docimp-wt/issue-243
 ```
 
@@ -983,11 +983,11 @@ EOF
 
 ```bash
 # From worktree directory
-cd /Users/nik/Documents/Code/Polygot/.docimp-wt/issue-243
+cd /Users/nik/Documents/Code/Polyglot/.docimp-wt/issue-243
 
 # Verify Husky config
 git config --worktree --get core.hooksPath
-# Output: /Users/nik/Documents/Code/Polygot/.docimp-wt/issue-243/.husky/_
+# Output: /Users/nik/Documents/Code/Polyglot/.docimp-wt/issue-243/.husky/_
 
 # If empty, reconfigure:
 git config --worktree core.hooksPath "$(git rev-parse --show-toplevel)/.husky/_"

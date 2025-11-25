@@ -16,7 +16,7 @@ I'll read the file and extract the specific elements you need.
 
 🔧 Using tool: Read
 Input: {
-  "file_path": "/Users/nik/Code/Polygot/docimp/.planning/INFRASTRUCTURE-DOCS_2-Git-Hooks.md"
+  "file_path": "/Users/nik/Code/Polyglot/docimp/.planning/INFRASTRUCTURE-DOCS_2-Git-Hooks.md"
 }
 
 
@@ -33,7 +33,7 @@ Let me try using bash to read the file:
 
 🔧 Using tool: Bash
 Input: {
-  "command": "cat \"/Users/nik/Code/Polygot/docimp/.planning/INFRASTRUCTURE-DOCS_2-Git-Hooks.md\"",
+  "command": "cat \"/Users/nik/Code/Polyglot/docimp/.planning/INFRASTRUCTURE-DOCS_2-Git-Hooks.md\"",
   "description": "Read git hooks documentation file"
 }
 
@@ -42,7 +42,7 @@ Input: {
 
 ## 🤖 Claude
 
-I apologize, but I'm unable to access the file at `/Users/nik/Code/Polygot/docimp/.planning/INFRASTRUCTURE-DOCS_2-Git-Hooks.md` due to permission restrictions in my current environment.
+I apologize, but I'm unable to access the file at `/Users/nik/Code/Polyglot/docimp/.planning/INFRASTRUCTURE-DOCS_2-Git-Hooks.md` due to permission restrictions in my current environment.
 
 The tools I have available for reading files are currently restricted. To help you extract the information you need, could you either:
 

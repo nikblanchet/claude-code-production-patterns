@@ -29,7 +29,7 @@ All Claude Code transcripts have been exported using the `claude-conversation-ex
 - System messages
 - Agent interactions
 
-**IMPORTANT**: This collection includes ONLY transcripts from the claude-code-production-patterns project. All unrelated sessions (from other projects like Polygot/docimp, custom-claude-skills, etc.) have been excluded.
+**IMPORTANT**: This collection includes ONLY transcripts from the claude-code-production-patterns project. All unrelated sessions (from other projects like Polyglot/docimp, custom-claude-skills, etc.) have been excluded.
 
 ### Session Distribution
 
@@ -158,7 +158,7 @@ From 301 total conversations exported:
 1. **Initial Export**: Used `claude-conversation-extractor` to identify all sessions
 2. **Filtering**: Extracted only sessions from claude-code-production-patterns directories
 3. **Verification**: Removed all transcripts from unrelated projects:
-   - ~/Documents/Code/Polygot/docimp (separate project)
+   - ~/Documents/Code/Polyglot/docimp (separate project)
    - ~/Documents/Code/repos/custom/claude/skills (different project)
    - ~/Documents/Python/codesignal/study (unrelated)
    - Other personal projects
@@ -270,7 +270,7 @@ This collection represents:
 **Sessions excluded** (verified as non-project):
 
 **From Claude Code:**
-- Polygot/docimp project sessions
+- Polyglot/docimp project sessions
 - Custom Claude skills development
 - Python coding study sessions
 - Personal project sessions

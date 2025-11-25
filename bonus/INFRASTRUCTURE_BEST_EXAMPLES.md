@@ -482,9 +482,9 @@ When using Claude Code for development, you need to:
       "Bash(uv add:*)"
     ],
     "additionalDirectories": [
-      "/Users/nik/Documents/Code/Polygot/.docimp-shared",
-      "/Users/nik/Documents/Code/Polygot/.docimp-wt",
-      "/Users/nik/Documents/Code/Polygot/docimp",
+      "/Users/nik/Documents/Code/Polyglot/.docimp-shared",
+      "/Users/nik/Documents/Code/Polyglot/.docimp-wt",
+      "/Users/nik/Documents/Code/Polyglot/docimp",
       "/Users/nik/Code/repos/anthropic-official-skills/skill-creator"
     ]
   }
@@ -1006,7 +1006,7 @@ fi
 
 ```bash
 $ cd /path/to/.docimp-wt/issue-260/
-direnv: loading ~/Documents/Code/Polygot/docimp/.envrc
+direnv: loading ~/Documents/Code/Polyglot/docimp/.envrc
 ✓ direnv loaded: Python tools intercepted (python, pip, pytest, ruff, mypy), Node version managed
 direnv: export ~PATH
 ```
