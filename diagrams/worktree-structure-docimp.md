@@ -3,6 +3,8 @@
 **What it Represents**:
 The physical file system layout of the DocImp repository, showing how worktrees, symlinks, and shared configuration enable multi-branch development with consistent Claude Code settings.
 
+**Note**: This diagram shows the **DocImp project** as a concrete example of the worktree pattern in a retrofit scenario. Directory names are DocImp-specific (`.docimp/`, `.docimp-shared/`, `.docimp-wt/`), but the structural patterns are generic and adaptable. For comparison with greenfield patterns, see `greenfield-vs-retrofit-comparison.md`.
+
 **Diagram**:
 
 ```

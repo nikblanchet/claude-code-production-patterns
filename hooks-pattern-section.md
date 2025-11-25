@@ -2,7 +2,7 @@
 
 ## Core Insight
 
-Git hooks determine worktree identity via **path pattern matching** (`/.docimp-wt/`), not fragile git metadata. This approach is robust, maintainable, and obvious: if the worktree path doesn't contain `/.docimp-wt/`, it's the main worktree. This simple check enables branch protection without relying on git configuration that can become inconsistent across worktrees.
+Git hooks determine worktree identity via **path pattern matching** (e.g., `/{worktree-dir}/`), not fragile git metadata. This approach is robust, maintainable, and obvious: if the worktree path doesn't match the configured pattern, it's the main worktree. This simple check enables branch protection without relying on git configuration that can become inconsistent across worktrees.
 
 ## Implementation
 
@@ -28,7 +28,8 @@ fi
 current_worktree=$(git rev-parse --show-toplevel)
 
 # Check if we're in the main worktree (not a feature worktree)
-if [[ ! "$current_worktree" =~ /.docimp-wt/ ]]; then
+# Replace WORKTREE_PATTERN with your pattern (e.g., /.myproject-wt/)
+if [[ ! "$current_worktree" =~ $WORKTREE_PATTERN ]]; then
     # We're in the main worktree - block the commit
     echo ""
     echo -e "${RED}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"

@@ -14,7 +14,7 @@ wc -c CLAUDE.md
 
 ## The External Import Pattern
 
-**Problem**: DocImp has complex architecture requiring extensive documentation. Inline documentation would exceed 40KB.
+**Problem**: Complex CLI tools with extensive architecture require comprehensive documentation. Inline documentation would exceed 40KB.
 
 **Solution**: Use `@docs/patterns/*.md` imports for detailed explanations.
 
@@ -28,10 +28,10 @@ wc -c CLAUDE.md
 ## Commands
 
 [Core commands documented inline: ~3KB]
-docimp analyze ./src
-docimp audit ./src
-docimp plan ./src
-docimp improve ./src
+tool analyze ./src
+tool audit ./src
+tool plan ./src
+tool improve ./src
 
 ## Error Handling Architecture
 
@@ -47,7 +47,7 @@ docimp improve ./src
 
 ## Transaction System Architecture
 
-**Side-car Git repository** in `.docimp/state/.git` for rollback capability
+**Side-car Git repository** in `.tool-state/.git` for rollback capability
 
 - @docs/patterns/transaction-integration.md
 ```

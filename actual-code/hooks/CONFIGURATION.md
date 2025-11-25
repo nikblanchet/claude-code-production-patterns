@@ -77,7 +77,7 @@ CREATE_WORKTREE_SCRIPT="/usr/local/bin/create_worktree.py"
 If `.worktree-config` doesn't exist, the hooks try to auto-detect:
 
 1. If the current worktree path contains `-wt-`, use that as the pattern
-2. Otherwise, use `/.docimp-wt/` (default for this example project)
+2. Otherwise, hooks will display an error asking you to create `.worktree-config`
 
 **Best practice:** Always create `.worktree-config` explicitly rather than relying on auto-detection.
 

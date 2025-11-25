@@ -87,7 +87,7 @@ Test complete user workflows.
 - May use actual files or fixtures
 
 **Example:**
-- Run `docimp analyze ./examples` and verify output format
+- Run `tool analyze ./examples` and verify output format
 - Run full improve workflow with mocked Claude API
 - Test that generated documentation is actually written to files
 
@@ -129,7 +129,7 @@ Avoid manual testing when possible, but when automated testing isn't feasible, d
 
 **Test Steps:**
 
-1. Run: `docimp improve ./examples`
+1. Run: `tool improve ./examples`
 2. Select a function to document (e.g., #1)
 3. Verify Claude generates appropriate documentation suggestion
 4. Choose [A] Accept

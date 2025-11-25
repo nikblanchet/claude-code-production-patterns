@@ -78,7 +78,7 @@ This is not:
 - Holding off on commits until a feature is "perfect"
 - Making commits so large they include multiple unrelated changes
 
-## Worktree-Based Development (DocImp Default)
+## Worktree-Based Development
 
 This project uses **git worktrees** for all development. Each feature or issue gets its own worktree (separate working directory) with its own branch.
 
@@ -157,7 +157,7 @@ When the feature is complete:
 
 1. **From the worktree**, push your branch:
    ```bash
-   cd ../.docimp-wt/issue-260
+   cd ../{worktree-dir}/issue-260
    git push -u origin issue-260-display-consistency
    ```
 
@@ -170,7 +170,7 @@ When the feature is complete:
    ```bash
    cd <project-root>                    # Return to main repo
    git checkout main && git pull        # Update main
-   git worktree remove ../.docimp-wt/issue-260  # Remove worktree
+   git worktree remove ../{worktree-dir}/issue-260  # Remove worktree
    git branch -d issue-260-display-consistency  # Delete local branch
    # Remote branch kept for history
    ```
@@ -258,7 +258,7 @@ git checkout feature-branch
 
 **Allowed in feature worktree:**
 ```bash
-cd ../.docimp-wt/issue-260
+cd ../{worktree-dir}/issue-260
 git checkout -b hotfix  # Works fine
 git commit -m "Fix"     # Works fine
 ```
@@ -273,7 +273,7 @@ python3 scripts/install_hooks.py
 # Start new feature/issue (DEFAULT WORKFLOW)
 cd <project-root>
 python3 scripts/create_worktree.py issue-260 issue-260-display-consistency
-cd ../.docimp-wt/issue-260
+cd ../{worktree-dir}/issue-260
 
 # After completing a logical unit of work:
 git add <files>
@@ -286,7 +286,7 @@ gh pr create --title "..." --body "Fixes #260..."
 # After PR merged:
 cd <project-root>
 git checkout main && git pull
-git worktree remove ../.docimp-wt/issue-260 && git branch -d issue-260-display-consistency
+git worktree remove ../{worktree-dir}/issue-260 && git branch -d issue-260-display-consistency
 
 # Check all worktrees:
 git worktree list
@@ -300,11 +300,11 @@ The sections above cover the standard workflow. This section provides details ab
 
 ```
 ~/projects/
-├── docimp/                    # Main repo (main branch)
-├── .docimp-wt/               # Hidden worktrees directory
+├── myproject/                 # Main repo (main branch)
+├── {worktree-dir}/           # Worktrees directory (e.g., .myproject-wt/)
 │   ├── issue-221/            # Worktree branches
 │   └── issue-243/
-└── .docimp-shared/           # Shared gitignored files
+└── {shared-dir}/             # Shared gitignored files (e.g., .myproject-shared/)
     ├── CLAUDE.md
     ├── CLAUDE_CONTEXT.md
     ├── .planning/
@@ -329,20 +329,20 @@ The `create_worktree.py` script automates worktree creation. See script docstrin
 ```bash
 cd <project-root>
 git checkout main && git pull
-mkdir -p ../.docimp-wt  # First time only
-git worktree add ../.docimp-wt/issue-XXX -b issue-XXX-description
+mkdir -p ../{worktree-dir}  # First time only
+git worktree add ../{worktree-dir}/issue-XXX -b issue-XXX-description
 
 # Create symlinks in new worktree
-cd ../.docimp-wt/issue-XXX
-ln -s ../../.docimp-shared/CLAUDE.md CLAUDE.md
-ln -s ../../.docimp-shared/CLAUDE_CONTEXT.md CLAUDE_CONTEXT.md
-ln -s ../../.docimp-shared/.planning .planning
-ln -s ../../.docimp-shared/.scratch .scratch
+cd ../{worktree-dir}/issue-XXX
+ln -s ../../{shared-dir}/CLAUDE.md CLAUDE.md
+ln -s ../../{shared-dir}/CLAUDE_CONTEXT.md CLAUDE_CONTEXT.md
+ln -s ../../{shared-dir}/.planning .planning
+ln -s ../../{shared-dir}/.scratch .scratch
 mkdir -p docs
-ln -s ../../../.docimp-shared/docs/patterns docs/patterns
+ln -s ../../../{shared-dir}/docs/patterns docs/patterns
 mkdir -p .claude
-ln -s ../../../.docimp-shared/.claude/skills .claude/skills
-ln -s ../../../.docimp-shared/.claude/settings.local.json .claude/settings.local.json
+ln -s ../../../{shared-dir}/.claude/skills .claude/skills
+ln -s ../../../{shared-dir}/.claude/settings.local.json .claude/settings.local.json
 ```
 
 ### Initial Shared Directory Setup (One-Time)
@@ -353,20 +353,20 @@ If setting up shared files for the first time:
 cd <project-root>
 
 # Create shared directory
-mkdir -p ../.docimp-shared/.planning ../.docimp-shared/.scratch
+mkdir -p ../{shared-dir}/.planning ../{shared-dir}/.scratch
 
 # Move existing files to shared location
-mv CLAUDE.md ../.docimp-shared/ 2>/dev/null || true
-mv CLAUDE_CONTEXT.md ../.docimp-shared/ 2>/dev/null || true
-mv .planning/* ../.docimp-shared/.planning/ 2>/dev/null || true
-mv .scratch/* ../.docimp-shared/.scratch/ 2>/dev/null || true
+mv CLAUDE.md ../{shared-dir}/ 2>/dev/null || true
+mv CLAUDE_CONTEXT.md ../{shared-dir}/ 2>/dev/null || true
+mv .planning/* ../{shared-dir}/.planning/ 2>/dev/null || true
+mv .scratch/* ../{shared-dir}/.scratch/ 2>/dev/null || true
 rmdir .planning .scratch 2>/dev/null || true
 
 # Create symlinks in main repo
-ln -s ../.docimp-shared/CLAUDE.md CLAUDE.md
-ln -s ../.docimp-shared/CLAUDE_CONTEXT.md CLAUDE_CONTEXT.md
-ln -s ../.docimp-shared/.planning .planning
-ln -s ../.docimp-shared/.scratch .scratch
+ln -s ../{shared-dir}/CLAUDE.md CLAUDE.md
+ln -s ../{shared-dir}/CLAUDE_CONTEXT.md CLAUDE_CONTEXT.md
+ln -s ../{shared-dir}/.planning .planning
+ln -s ../{shared-dir}/.scratch .scratch
 ```
 
 ### Benefits
@@ -384,13 +384,13 @@ Work on two independent issues simultaneously:
 # Terminal 1: Create and work on Issue #221
 cd <project-root>
 python3 scripts/create_worktree.py issue-221 issue-221-styleguides
-cd ../.docimp-wt/issue-221
+cd ../{worktree-dir}/issue-221
 # Open in Claude Code instance 1
 
 # Terminal 2: Create and work on Issue #243
 cd <project-root>
 python3 scripts/create_worktree.py issue-243 issue-243-api-timeout
-cd ../.docimp-wt/issue-243
+cd ../{worktree-dir}/issue-243
 # Open in Claude Code instance 2
 
 # Both worktrees have access to:

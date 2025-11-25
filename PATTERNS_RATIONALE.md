@@ -64,8 +64,6 @@ These patterns have been refined through production use in polyglot codebases (P
 - Developers need fast iteration cycles
 - Context management is critical
 
-For a narrative example of these patterns in practice, see [DocImp](https://github.com/nikblanchet/docimp), a reference implementation demonstrating the patterns in a real codebase. However, this repository is self-contained—you don't need DocImp to understand or use these patterns.
-
 ## When to Use These Patterns
 
 **Use these patterns when:**

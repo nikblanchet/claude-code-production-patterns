@@ -15,15 +15,13 @@ This repository serves as both **documentation and demonstration** of advanced C
 - **Git Hooks for AI Safety** - Branch protection and worktree isolation
 - **Symlink Discovery Pattern** - Separate documentation from runtime configuration
 
-All patterns extracted from production use in a large-scale polyglot codebase.
+All patterns extracted from production use and tested at scale.
 
 **Ongoing Development**: I found this exercise enlightening and have decided to continue expanding this repository both for my own edification (it's useful to have all my production patterns documented in one place) and for the general utility of others working with Claude Code at scale.
 
 **For Evaluators and Hiring Teams**: You can fork this repository and revert to commit `[initial-submission]` to see the state at the time of the original assignment submission. The repository continues to evolve with additional patterns and refinements based on production use.
 
 **Background**: This repository was created in response to a technical documentation assignment. See [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md) for the original prompt and requirements that shaped this work.
-
-**Learning Ground**: These patterns were refined through production use in [DocImp](https://github.com/yourusername/docimp), a 17,000+ line polyglot codebase (Python/TypeScript/JavaScript) that serves as an optional narrative accompaniment to this documentation. DocImp demonstrates these patterns in a real-world context, but this repository is self-contained and doesn't require DocImp knowledge to be useful.
 
 ## See It Working (Quick Start)
 
